@@ -86,11 +86,10 @@
   flex-shrink: 0;
   width: 16px;
   height: 16px;
-  color: var(--neutral-500);
 }
 
 .icon path {
-  stroke: currentColor;
+  stroke: var(--neutral-500);
 }
 
 .helperText {

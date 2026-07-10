@@ -34,11 +34,14 @@
   flex-shrink: 0;
   width: 16px;
   height: 16px;
-  color: var(--neutral-500);
 }
 
 .icon path {
-  stroke: currentColor;
+  stroke: var(--neutral-500);
+}
+
+.field.focused .icon path {
+  stroke: var(--neutral-900);
 }
 
 .nativeInput {
@@ -105,11 +108,10 @@
 .resultIcon {
   width: 16px;
   height: 16px;
-  color: var(--primary-600);
 }
 
 .resultIcon path {
-  stroke: currentColor;
+  stroke: var(--primary-600);
 }
 
 .resultText {

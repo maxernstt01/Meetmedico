@@ -1,0 +1,204 @@
+.wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-space-4);
+  width: 100%;
+}
+
+.field {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-space-12);
+  border: 1px solid var(--neutral-300);
+  border-radius: var(--radius-border-radius-8);
+  background-color: var(--background-background);
+  transition: border-color 0.15s ease;
+}
+
+.field:hover {
+  border-color: var(--neutral-500);
+}
+
+.field.focused {
+  border-color: var(--secondary-600);
+}
+
+.field.error {
+  border-color: var(--error-600);
+}
+
+.field:has(.trigger:disabled) {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.label {
+  position: absolute;
+  top: 0;
+  left: var(--spacing-space-12);
+  transform: translateY(-50%);
+  padding: 0 4px;
+  background-color: var(--background-background);
+  font-family: var(--font-family-type-family-primary), system-ui, sans-serif;
+  font-weight: var(--font-weight-type-weight-medium-500);
+  font-size: var(--font-size-caption);
+  color: var(--neutral-600);
+  white-space: nowrap;
+}
+
+.required {
+  color: var(--primary-600);
+}
+
+.trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-space-8);
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  font-family: var(--font-family-type-family-primary), system-ui, sans-serif;
+  font-weight: var(--font-weight-type-weight-medium-500);
+  font-size: var(--font-size-label);
+  line-height: var(--line-height-type-lh-label);
+  color: var(--neutral-900);
+}
+
+.triggerText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: left;
+}
+
+.triggerText.placeholder {
+  color: var(--neutral-500);
+}
+
+.icon {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+}
+
+.icon path {
+  stroke: var(--neutral-500);
+}
+
+.helperText {
+  margin: 0;
+  font-family: var(--font-family-type-family-primary), system-ui, sans-serif;
+  font-weight: var(--font-weight-type-weight-regular-400);
+  font-size: var(--font-size-caption);
+  color: var(--neutral-600);
+}
+
+.field.error ~ .helperText {
+  color: var(--error-600);
+}
+
+/* Tertiary trigger */
+.tertiaryTrigger {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-space-8);
+  width: fit-content;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  font-family: var(--font-family-type-family-primary), system-ui, sans-serif;
+  font-weight: var(--font-weight-type-weight-bold-700);
+  font-size: var(--font-size-label);
+  color: var(--primary-600);
+}
+
+.tertiaryTrigger:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.tertiaryIcon {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+}
+
+.tertiaryIcon path {
+  stroke: var(--primary-600);
+}
+
+/* Options panel */
+.panel {
+  position: absolute;
+  top: calc(100% + var(--spacing-space-4));
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  max-height: 280px;
+  overflow-y: auto;
+  border: 1px solid var(--neutral-300);
+  border-radius: var(--radius-border-radius-8);
+  background-color: var(--white-900);
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-space-8);
+  border: none;
+  background: transparent;
+  padding: var(--spacing-space-12);
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-family-type-family-primary), system-ui, sans-serif;
+  font-weight: var(--font-weight-type-weight-medium-500);
+  font-size: var(--font-size-label);
+  color: var(--neutral-600);
+}
+
+.option:hover {
+  background-color: var(--primary-50);
+}
+
+.optionLabel {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.checkbox {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border: 1px solid var(--neutral-300);
+  border-radius: var(--radius-border-radius-8);
+}
+
+.checkboxChecked {
+  border-color: var(--primary-600);
+}
+
+.tickIcon {
+  width: 16px;
+  height: 16px;
+}
+
+.tickIcon path {
+  stroke: var(--neutral-300);
+}
+
+.checkboxChecked .tickIcon path {
+  stroke: var(--primary-600);
+}

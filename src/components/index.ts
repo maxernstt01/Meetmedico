@@ -8,3 +8,5 @@ export * from './PhoneNumberInput';
 export * from './ImageUpload';
 export * from './OTPInput';
 export * from './Search';
+export * from './Dropdown';
+export * from './Badge';

@@ -2,8 +2,10 @@ import type { CSSProperties } from 'react';
 import LocationIcon from '@/assets/icons/Primary Button/Location02Icon.svg?react';
 import CalendarIcon from '@/assets/icons/Primary Button/Calendar04Icon.svg?react';
 import {
+  Badge,
   Button,
   DatePicker,
+  Dropdown,
   IconButton,
   ImageUpload,
   Input,
@@ -14,6 +16,11 @@ import {
   TextArea,
   TimePicker,
 } from './components';
+
+const dropdownOptions = Array.from({ length: 7 }, (_, i) => ({
+  value: String(i + 1),
+  label: `Option ${i + 1}`,
+}));
 
 const searchResults = [
   {
@@ -219,6 +226,60 @@ export default function App() {
             <h3>After search show data</h3>
             <Search defaultValue="Token News" results={searchResults} />
           </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Dropdown</h2>
+        <div style={inputGrid}>
+          <div style={inputCell}>
+            <h3>With Support Text</h3>
+            <Dropdown label="Dropdown" required options={dropdownOptions} helperText="Support Text" />
+          </div>
+          <div style={inputCell}>
+            <h3>Without Support Text</h3>
+            <Dropdown label="Dropdown" required options={dropdownOptions} />
+          </div>
+          <div style={inputCell}>
+            <h3>Normal (open on click)</h3>
+            <Dropdown label="Dropdown" required options={dropdownOptions} />
+          </div>
+          <div style={inputCell}>
+            <h3>Single Select</h3>
+            <Dropdown label="Dropdown" required mode="single" options={dropdownOptions} />
+          </div>
+          <div style={inputCell}>
+            <h3>Multi Select</h3>
+            <Dropdown
+              label="Dropdown"
+              required
+              mode="multi"
+              options={dropdownOptions}
+              defaultValue={['1', '2']}
+            />
+          </div>
+          <div style={inputCell}>
+            <h3>Tertiary</h3>
+            <Dropdown variant="tertiary" label="Dropdown" options={dropdownOptions} />
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Badges</h2>
+        <div style={row}>
+          <Badge variant="neutral">Neutral</Badge>
+          <Badge variant="info">Info</Badge>
+          <Badge variant="success">Success</Badge>
+          <Badge variant="warning">Warning</Badge>
+          <Badge variant="error">Error</Badge>
+        </div>
+        <div style={{ ...row, marginTop: 'var(--spacing-space-12)' }}>
+          <Badge variant="neutral" icon={LocationIcon}>Neutral</Badge>
+          <Badge variant="info" icon={LocationIcon}>Info</Badge>
+          <Badge variant="success" icon={LocationIcon}>Success</Badge>
+          <Badge variant="warning" icon={LocationIcon}>Warning</Badge>
+          <Badge variant="error" icon={LocationIcon}>Error</Badge>
         </div>
       </section>
 
