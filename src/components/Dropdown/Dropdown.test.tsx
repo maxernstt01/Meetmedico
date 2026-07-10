@@ -46,6 +46,28 @@ describe('Dropdown', () => {
     expect(onChange).toHaveBeenLastCalledWith(['1', '2']);
   });
 
+  it('showSelectedTags: trigger always shows the placeholder, selections render as removable tags', async () => {
+    const onChange = vi.fn();
+    render(
+      <Dropdown
+        label="Dropdown"
+        mode="multi"
+        showSelectedTags
+        defaultValue={['1', '2']}
+        options={options}
+        onChange={onChange}
+      />
+    );
+    expect(screen.getByText('Select Dropdown')).toBeInTheDocument();
+    const tag1 = screen.getByText('Option 1');
+    const tag2 = screen.getByText('Option 2');
+    expect(tag1).toBeInTheDocument();
+    expect(tag2).toBeInTheDocument();
+
+    await userEvent.click(screen.getByRole('button', { name: 'Remove Option 1' }));
+    expect(onChange).toHaveBeenCalledWith(['2']);
+  });
+
   it('tertiary variant renders a text-link trigger', async () => {
     render(<Dropdown variant="tertiary" label="Dropdown" options={options} />);
     const trigger = screen.getByRole('button', { name: 'Dropdown' });

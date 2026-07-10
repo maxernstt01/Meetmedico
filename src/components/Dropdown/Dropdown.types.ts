@@ -20,4 +20,7 @@ export interface DropdownProps {
   placeholder?: string;
   disabled?: boolean;
   id?: string;
+  /** Only meaningful with mode="multi". Instead of a summary in the trigger,
+   * renders each selected option as a removable tag below the trigger. */
+  showSelectedTags?: boolean;
 }

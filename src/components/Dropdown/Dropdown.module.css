@@ -134,6 +134,49 @@
   stroke: var(--primary-600);
 }
 
+/* Selected tags (multi-select, showSelectedTags) */
+.selectedTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-space-8);
+  margin-top: var(--spacing-space-4);
+}
+
+.selectedTag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-space-8);
+  padding: var(--spacing-space-4) var(--spacing-space-8);
+  border: 1px solid var(--primary-500);
+  border-radius: var(--radius-border-radius-8);
+  background-color: var(--primary-50);
+}
+
+.selectedTagLabel {
+  font-family: var(--font-family-type-family-primary), system-ui, sans-serif;
+  font-weight: var(--font-weight-type-weight-medium-500);
+  font-size: var(--font-size-label);
+  color: var(--neutral-900);
+}
+
+.selectedTagRemove {
+  flex-shrink: 0;
+  display: inline-flex;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+
+.selectedTagIcon {
+  width: 12px;
+  height: 12px;
+}
+
+.selectedTagIcon path {
+  stroke: var(--neutral-500);
+}
+
 /* Options panel */
 .panel {
   position: absolute;

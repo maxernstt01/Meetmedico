@@ -1,0 +1,60 @@
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-space-8);
+  width: fit-content;
+  padding: var(--spacing-space-8) var(--spacing-space-12);
+  border: 1px solid var(--neutral-100);
+  border-radius: var(--radius-border-radius-8);
+  background-color: var(--neutral-50);
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.label {
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  font-family: var(--font-family-type-family-primary), system-ui, sans-serif;
+  font-weight: var(--font-weight-type-weight-medium-500);
+  font-size: var(--font-size-label);
+  color: var(--neutral-900);
+}
+
+.chip.interactive .label {
+  cursor: pointer;
+}
+
+.chip.interactive:hover:not(.selected) {
+  background-color: var(--primary-50);
+  border-color: var(--primary-500);
+}
+
+.chip.selected {
+  background-color: var(--primary-50);
+  border-color: var(--primary-500);
+}
+
+.chip:has(.label:disabled) {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.icon {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+}
+
+.icon path {
+  stroke: var(--neutral-500);
+}
+
+.removeButton {
+  flex-shrink: 0;
+  display: inline-flex;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+}

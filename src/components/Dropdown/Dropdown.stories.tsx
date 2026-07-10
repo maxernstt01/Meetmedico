@@ -26,4 +26,7 @@ export const WithoutSupportText: Story = {};
 export const Normal: Story = { args: { defaultValue: [] } };
 export const SingleSelect: Story = { args: { mode: 'single' } };
 export const MultiSelect: Story = { args: { mode: 'multi', defaultValue: ['1', '2', '3'] } };
+export const MultiSelectWithTags: Story = {
+  args: { mode: 'multi', showSelectedTags: true, defaultValue: ['1', '2', '3'] },
+};
 export const Tertiary: Story = { args: { variant: 'tertiary' } };

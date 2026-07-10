@@ -1,0 +1,43 @@
+.label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-space-4);
+  width: fit-content;
+  padding: var(--spacing-space-4) var(--spacing-space-8);
+  border-radius: var(--radius-border-radius-8);
+  font-family: var(--font-family-type-family-primary), system-ui, sans-serif;
+  font-weight: var(--font-weight-type-weight-medium-500);
+  font-size: var(--font-size-caption);
+  color: var(--background-button-tex-and-icon-light);
+  white-space: nowrap;
+}
+
+.icon {
+  flex-shrink: 0;
+  width: 12px;
+  height: 12px;
+}
+
+.icon path {
+  stroke: var(--background-button-tex-and-icon-light);
+}
+
+.neutral {
+  background-color: var(--neutral-600);
+}
+
+.info {
+  background-color: var(--secondary-600);
+}
+
+.success {
+  background-color: var(--sucess-600);
+}
+
+.warning {
+  background-color: var(--warning-600);
+}
+
+.error {
+  background-color: var(--error-600);
+}

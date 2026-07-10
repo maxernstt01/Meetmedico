@@ -2,8 +2,9 @@ import { useId, useRef, useState, type FocusEvent, type KeyboardEvent } from 're
 import ArrowDownGlyph from '@/assets/icons/Primary Button/ArrowDown01Icon.svg?react';
 import ArrowUpGlyph from '@/assets/icons/Primary Button/ArrowUp01Icon.svg?react';
 import TickGlyph from '@/assets/icons/Primary Button/Tick02Icon.svg?react';
+import CancelGlyph from '@/assets/icons/Primary Button/Cancel01Icon.svg?react';
 import styles from './Dropdown.module.css';
-import type { DropdownProps } from './Dropdown.types';
+import type { DropdownOption, DropdownProps } from './Dropdown.types';
 
 export function Dropdown({
   label,
@@ -19,6 +20,7 @@ export function Dropdown({
   placeholder = 'Select Dropdown',
   disabled,
   id,
+  showSelectedTags = false,
 }: DropdownProps) {
   const generatedId = useId();
   const triggerId = id ?? generatedId;
@@ -62,12 +64,13 @@ export function Dropdown({
     if (event.key === 'Escape') setOpen(false);
   };
 
-  const selectedLabels = value
-    .map((item) => options.find((option) => option.value === item)?.label)
-    .filter((optionLabel): optionLabel is string => Boolean(optionLabel));
+  const selectedOptions = value
+    .map((item) => options.find((option) => option.value === item))
+    .filter((option): option is DropdownOption => Boolean(option));
+  const selectedLabels = selectedOptions.map((option) => option.label);
 
   const hasValue = selectedLabels.length > 0;
-  const triggerText = !hasValue
+  const triggerText = showSelectedTags || !hasValue
     ? placeholder
     : mode === 'multi' && selectedLabels.length > 2
       ? `${selectedLabels.length} selected`
@@ -152,7 +155,7 @@ export function Dropdown({
         >
           <span
             id={`${triggerId}-value`}
-            className={[styles.triggerText, !hasValue && styles.placeholder]
+            className={[styles.triggerText, (showSelectedTags || !hasValue) && styles.placeholder]
               .filter(Boolean)
               .join(' ')}
           >
@@ -161,6 +164,23 @@ export function Dropdown({
           <ArrowIcon className={styles.icon} aria-hidden="true" />
         </button>
       </div>
+      {showSelectedTags && selectedOptions.length > 0 && (
+        <div className={styles.selectedTags}>
+          {selectedOptions.map((option) => (
+            <span key={option.value} className={styles.selectedTag}>
+              <span className={styles.selectedTagLabel}>{option.label}</span>
+              <button
+                type="button"
+                className={styles.selectedTagRemove}
+                aria-label={`Remove ${option.label}`}
+                onClick={() => handleSelect(option.value)}
+              >
+                <CancelGlyph className={styles.selectedTagIcon} aria-hidden="true" />
+              </button>
+            </span>
+          ))}
+        </div>
+      )}
       {helperText && <p className={styles.helperText}>{helperText}</p>}
       {optionsPanel}
     </div>

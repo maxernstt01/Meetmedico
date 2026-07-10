@@ -10,3 +10,5 @@ export * from './OTPInput';
 export * from './Search';
 export * from './Dropdown';
 export * from './Badge';
+export * from './Label';
+export * from './Chip';

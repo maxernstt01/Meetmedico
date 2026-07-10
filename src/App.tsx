@@ -1,14 +1,17 @@
-import type { CSSProperties } from 'react';
+import { useState, type CSSProperties } from 'react';
 import LocationIcon from '@/assets/icons/Primary Button/Location02Icon.svg?react';
 import CalendarIcon from '@/assets/icons/Primary Button/Calendar04Icon.svg?react';
+import ArrowDownIcon from '@/assets/icons/Primary Button/ArrowDown01Icon.svg?react';
 import {
   Badge,
   Button,
+  Chip,
   DatePicker,
   Dropdown,
   IconButton,
   ImageUpload,
   Input,
+  Label,
   Logo,
   OTPInput,
   PhoneNumberInput,
@@ -58,6 +61,9 @@ const inputCell: CSSProperties = {
 };
 
 export default function App() {
+  const [chipSelected, setChipSelected] = useState(true);
+  const [chipToggled, setChipToggled] = useState(false);
+
   return (
     <div
       style={{
@@ -262,6 +268,17 @@ export default function App() {
             <h3>Tertiary</h3>
             <Dropdown variant="tertiary" label="Dropdown" options={dropdownOptions} />
           </div>
+          <div style={inputCell}>
+            <h3>Multi-select Picker (selected list showing)</h3>
+            <Dropdown
+              label="Dropdown"
+              required
+              mode="multi"
+              showSelectedTags
+              options={dropdownOptions}
+              defaultValue={['1', '2', '3']}
+            />
+          </div>
         </div>
       </section>
 
@@ -280,6 +297,55 @@ export default function App() {
           <Badge variant="success" icon={LocationIcon}>Success</Badge>
           <Badge variant="warning" icon={LocationIcon}>Warning</Badge>
           <Badge variant="error" icon={LocationIcon}>Error</Badge>
+        </div>
+      </section>
+
+      <section>
+        <h2>Labels</h2>
+        <div style={row}>
+          <Label variant="neutral">Neutral</Label>
+          <Label variant="info">Info</Label>
+          <Label variant="success">Success</Label>
+          <Label variant="warning">Warning</Label>
+          <Label variant="error">Error</Label>
+        </div>
+        <div style={{ ...row, marginTop: 'var(--spacing-space-12)' }}>
+          <Label variant="neutral" icon={LocationIcon}>Neutral</Label>
+          <Label variant="info" icon={LocationIcon}>Info</Label>
+          <Label variant="success" icon={LocationIcon}>Success</Label>
+          <Label variant="warning" icon={LocationIcon}>Warning</Label>
+          <Label variant="error" icon={LocationIcon}>Error</Label>
+        </div>
+      </section>
+
+      <section>
+        <h2>Chips</h2>
+        <div style={row}>
+          <Chip>Default</Chip>
+          <Chip icon={ArrowDownIcon}>Default</Chip>
+        </div>
+        <div style={{ ...row, marginTop: 'var(--spacing-space-12)' }}>
+          <Chip onClick={() => {}}>Normal (hover me)</Chip>
+          {chipSelected ? (
+            <Chip
+              selected
+              onClick={() => {}}
+              onRemove={() => setChipSelected(false)}
+            >
+              Selected
+            </Chip>
+          ) : (
+            <Chip onClick={() => setChipSelected(true)}>Click to select</Chip>
+          )}
+        </div>
+        <div style={{ ...row, marginTop: 'var(--spacing-space-12)' }}>
+          <Chip
+            selected={chipToggled}
+            onClick={() => setChipToggled((prev) => !prev)}
+            onRemove={() => setChipToggled(false)}
+          >
+            {chipToggled ? 'Selected' : 'Default / Hover / Click me'}
+          </Chip>
         </div>
       </section>
 
