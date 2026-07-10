@@ -1,0 +1,96 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-space-4);
+  width: 100%;
+}
+
+.field {
+  position: relative;
+  padding: var(--spacing-space-12);
+  border: 1px solid var(--neutral-300);
+  border-radius: var(--radius-border-radius-8);
+  background-color: var(--background-background);
+  transition: border-color 0.15s ease;
+}
+
+.field:hover {
+  border-color: var(--neutral-500);
+}
+
+.field.focused {
+  border-color: var(--secondary-600);
+}
+
+.field.error {
+  border-color: var(--error-600);
+}
+
+.field:has(.nativeTextArea:disabled) {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.label {
+  position: absolute;
+  top: 0;
+  left: var(--spacing-space-12);
+  transform: translateY(-50%);
+  padding: 0 4px;
+  background-color: var(--background-background);
+  font-family: var(--font-family-type-family-primary), system-ui, sans-serif;
+  font-weight: var(--font-weight-type-weight-medium-500);
+  font-size: var(--font-size-caption);
+  color: var(--neutral-600);
+  white-space: nowrap;
+}
+
+.required {
+  color: var(--primary-600);
+}
+
+.nativeTextArea {
+  display: block;
+  width: 100%;
+  min-height: 96px;
+  resize: vertical;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: var(--font-family-type-family-primary), system-ui, sans-serif;
+  font-weight: var(--font-weight-type-weight-medium-500);
+  font-size: var(--font-size-label);
+  line-height: var(--line-height-type-lh-label);
+  color: var(--neutral-900);
+}
+
+.nativeTextArea::placeholder {
+  color: var(--neutral-500);
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-space-8);
+}
+
+.helperText {
+  margin: 0;
+  font-family: var(--font-family-type-family-primary), system-ui, sans-serif;
+  font-weight: var(--font-weight-type-weight-regular-400);
+  font-size: var(--font-size-caption);
+  color: var(--neutral-600);
+}
+
+.field.error ~ .footer .helperText {
+  color: var(--error-600);
+}
+
+.counter {
+  margin-left: auto;
+  font-family: var(--font-family-type-family-primary), system-ui, sans-serif;
+  font-weight: var(--font-weight-type-weight-regular-400);
+  font-size: var(--font-size-caption);
+  color: var(--neutral-600);
+}

@@ -1,0 +1,101 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-space-8);
+  height: 36px;
+  padding: var(--spacing-space-12) var(--spacing-space-16);
+  border-radius: var(--radius-border-radius-8);
+  border: 1px solid transparent;
+  font-family: var(--font-family-type-family-primary), system-ui, sans-serif;
+  font-weight: var(--font-weight-type-weight-bold-700);
+  font-size: var(--font-size-label);
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.button:disabled {
+  cursor: not-allowed;
+}
+
+.icon {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+}
+
+.icon path {
+  stroke: currentColor;
+}
+
+/* Primary */
+.primary {
+  background-color: var(--primary-600);
+  color: var(--background-button-tex-and-icon-light);
+}
+
+.primary:not(:disabled):hover {
+  background-color: var(--primary-900);
+}
+
+.primary:disabled {
+  background-color: var(--primary-500);
+}
+
+/* Error */
+.error {
+  background-color: var(--error-600);
+  color: var(--background-button-tex-and-icon-light);
+}
+
+.error:not(:disabled):hover {
+  background-color: var(--error-900);
+}
+
+.error:disabled {
+  background-color: var(--error-500);
+}
+
+/* Secondary */
+.secondary {
+  background-color: transparent;
+  border-color: var(--neutral-100);
+  color: var(--primary-600);
+}
+
+.secondary:not(:disabled):hover {
+  background-color: var(--primary-50);
+  border-color: var(--primary-500);
+}
+
+.secondary:disabled {
+  border-color: var(--neutral-100);
+  color: var(--primary-500);
+}
+
+/* Tertiary */
+.tertiary {
+  height: auto;
+  padding: 0;
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--primary-600);
+}
+
+.tertiary:not(:disabled):hover {
+  text-decoration: underline;
+}
+
+.tertiary:disabled {
+  color: var(--primary-500);
+}
+
+/* Icon button (square, single centered icon) */
+.iconButton {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  gap: 0;
+}

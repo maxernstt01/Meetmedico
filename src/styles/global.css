@@ -1,0 +1,264 @@
+/* =========================================
+   MOBILE FIRST (Base :root)
+   ========================================= */
+:root {
+  /* --- Typography: Strings --- */
+  --font-family-type-family-primary: 'Be Vietnam Pro';
+  --font-weight-type-weight-extra-bold-800: 800; /* Mapped from Extra Bold */
+  --font-weight-type-weight-bold-700: 700;       /* Mapped from Bold */
+  --font-weight-type-weight-semi-bold-600: 600;  /* Mapped from Semi Bold */
+  --font-weight-type-weight-medium-500: 500;     /* Mapped from Medium */
+  --font-weight-type-weight-regular-400: 400;    /* Mapped from Regular */
+
+  /* --- Typography: Mobile Font Sizes --- */
+  --font-size-display: 30px;
+  --font-size-heading-h1: 24px;
+  --font-size-sub-heading-h2: 20px;
+  --font-size-title-h3: 16px;
+  --font-size-sub-title-h4: 14px;
+  --font-size-body-p1: 16px;
+  --font-size-label: 12px;
+  --font-size-caption: 10px;
+
+  /* --- Typography: Mobile Line Heights --- */
+  --line-height-type-lh-display: 40px;
+  --line-height-type-lh-heading-h1: 32px;
+  --line-height-type-lh-sub-heading-h2: 26px;
+  --line-height-type-lh-title-h3: 20px;
+  --line-height-type-lh-sub-title-h4: 18px;
+  --line-height-type-lh-body-p1: 18px;
+  --line-height-type-lh-label: 16px;
+  --line-height-type-lh-caption: 13px;
+
+  /* --- Border Radius: Mobile --- */
+  --radius-border-radius-8: 8px;
+  --radius-border-radius-12: 8px;
+
+  /* --- Spacing: Mobile --- */
+  --spacing-space-0: 0px;
+  --spacing-space-4: 4px;
+  --spacing-space-8: 4px;
+  --spacing-space-12: 8px;
+  --spacing-space-16: 12px;
+  --spacing-space-20: 16px;
+  --spacing-space-24: 16px;
+  --spacing-space-32: 20px;
+  --spacing-space-36: 24px;
+  --spacing-space-40: 32px;
+  --spacing-space-60: 36px;
+  --spacing-space-80: 40px;
+  --spacing-space-100: 60px;
+
+  /* --- Effects: Box Shadows --- */
+  --box-shadow-brand-color-shadow: 0px 8px 10px -6px rgba(29, 170, 101, 0.05), 0px 20px 25px -5px rgba(29, 170, 101, 0.05);
+  --box-shadow-neutral-color-shadow: 0px 8px 10px -6px rgba(255, 255, 255, 0.1), 0px 20px 25px -5px rgba(255, 255, 255, 0.1);
+  --box-shadow-success-color-shadow: 0px 8px 10px -6px rgba(31, 143, 79, 0.05), 0px 20px 25px -5px rgba(31, 143, 79, 0.05);
+  --box-shadow-error-color-shadow: 0px 8px 10px -6px rgba(229, 37, 37, 0.05), 0px 20px 25px -5px rgba(229, 37, 37, 0.05);
+  --box-shadow-warning-color-shadow: 0px 8px 10px -6px rgba(202, 138, 4, 0.05), 0px 20px 25px -5px rgba(202, 138, 4, 0.05);
+
+  /* --- Colors: Light Mode --- */
+  --primary-50: rgba(29, 170, 101, 0.05);
+  --primary-100: rgba(29, 170, 101, 0.1);
+  --primary-300: rgba(29, 170, 101, 0.2);
+  --primary-500: rgba(29, 170, 101, 0.5);
+  --primary-600: #1daa65;
+  --primary-900: #147747;
+
+  --secondary-50: rgba(37, 124, 255, 0.05);
+  --secondary-100: rgba(37, 124, 255, 0.1);
+  --secondary-300: rgba(37, 124, 255, 0.2);
+  --secondary-500: rgba(37, 124, 255, 0.5);
+  --secondary-600: #257cff;
+  --secondary-900: #1a57b3;
+
+  --neutral-50: rgba(20, 25, 25, 0.05);
+  --neutral-100: rgba(20, 25, 25, 0.1);
+  --neutral-300: rgba(20, 25, 25, 0.2);
+  --neutral-500: rgba(20, 25, 25, 0.5);
+  --neutral-600: rgba(20, 25, 25, 0.8);
+  --neutral-900: #141919;
+
+  --white-50: rgba(255, 255, 255, 0.05);
+  --white-100: rgba(255, 255, 255, 0.1);
+  --white-300: rgba(255, 255, 255, 0.2);
+  --white-500: rgba(255, 255, 255, 0.5);
+  --white-600: rgba(255, 255, 255, 0.8);
+  --white-900: #ffffff;
+
+  --sucess-50: rgba(31, 143, 79, 0.05);
+  --sucess-100: rgba(31, 143, 79, 0.1);
+  --sucess-300: rgba(31, 143, 79, 0.2);
+  --sucess-500: rgba(31, 143, 79, 0.5);
+  --sucess-600: #1f8f4f;
+  --sucess-900: #166437;
+
+  --error-50: rgba(229, 37, 37, 0.05);
+  --error-100: rgba(229, 37, 37, 0.1);
+  --error-300: rgba(229, 37, 37, 0.2);
+  --error-500: rgba(229, 37, 37, 0.5);
+  --error-600: #e52525;
+  --error-900: #690f0f;
+
+  --warning-50: rgba(202, 138, 4, 0.05);
+  --warning-100: rgba(202, 138, 4, 0.1);
+  --warning-300: rgba(202, 138, 4, 0.2);
+  --warning-500: rgba(202, 138, 4, 0.5);
+  --warning-600: #ca8a04;
+  --warning-900: #a26e03;
+
+  --background-background: #ffffff;
+  --background-dashboard-background: #f0fdf6;
+  --background-button-background: #1daa65;
+  --background-button-tex-and-icon-light: #ffffff;
+  --background-button-tex-and-icon-dark: #0a0a0a;
+  --background-card-background: #ffffff;
+}
+
+/* =========================================
+   TABLET RESPONSIVE OVERRIDES
+   ========================================= */
+@media (min-width: 768px) {
+  :root {
+    /* --- Border Radius: Tablet --- */
+    --radius-border-radius-8: 8px;
+    --radius-border-radius-12: 12px;
+
+    /* --- Spacing: Tablet --- */
+    --spacing-space-0: 0px;
+    --spacing-space-4: 4px;
+    --spacing-space-8: 8px;
+    --spacing-space-12: 12px;
+    --spacing-space-16: 16px;
+    --spacing-space-20: 16px;
+    --spacing-space-24: 20px;
+    --spacing-space-32: 24px;
+    --spacing-space-36: 32px;
+    --spacing-space-40: 36px;
+    --spacing-space-60: 40px;
+    --spacing-space-80: 60px;
+    --spacing-space-100: 80px;
+  }
+}
+
+/* =========================================
+   WEB RESPONSIVE OVERRIDES
+   ========================================= */
+@media (min-width: 1024px) {
+  :root {
+    /* --- Typography: Website Font Sizes --- */
+    --font-size-display: 40px;
+    --font-size-heading-h1: 32px;
+    --font-size-sub-heading-h2: 28px;
+    --font-size-title-h3: 20px;
+    --font-size-sub-title-h4: 16px;
+    --font-size-body-p1: 18px;
+    --font-size-label: 14px;
+    --font-size-caption: 12px;
+
+    /* --- Typography: Website Line Heights --- */
+    --line-height-type-lh-display: 52px;
+    --line-height-type-lh-heading-h1: 42px;
+    --line-height-type-lh-sub-heading-h2: 36px;
+    --line-height-type-lh-title-h3: 26px;
+    --line-height-type-lh-sub-title-h4: 20px;
+    --line-height-type-lh-body-p1: 24px;
+    --line-height-type-lh-label: 18px;
+    --line-height-type-lh-caption: 16px;
+
+    /* --- Border Radius: Web --- */
+    --radius-border-radius-8: 8px;
+    --radius-border-radius-12: 12px;
+
+    /* --- Spacing: Web --- */
+    --spacing-space-0: 0px;
+    --spacing-space-4: 4px;
+    --spacing-space-8: 8px;
+    --spacing-space-12: 12px;
+    --spacing-space-16: 16px;
+    --spacing-space-20: 20px;
+    --spacing-space-24: 24px;
+    --spacing-space-32: 32px;
+    --spacing-space-36: 36px;
+    --spacing-space-40: 40px;
+    --spacing-space-60: 60px;
+    --spacing-space-80: 80px;
+    --spacing-space-100: 100px;
+  }
+}
+
+/* =========================================
+   DARK MODE OVERRIDES
+   ========================================= */
+.dark {
+  /* --- Colors: Dark Mode --- */
+  --primary-50: rgba(29, 170, 101, 0.05);
+  --primary-100: rgba(29, 170, 101, 0.1);
+  --primary-300: rgba(29, 170, 101, 0.2);
+  --primary-500: rgba(29, 170, 101, 0.5);
+  --primary-600: #1daa65;
+  --primary-900: #147747;
+
+  --secondary-50: rgba(37, 124, 255, 0.05);
+  --secondary-100: rgba(37, 124, 255, 0.1);
+  --secondary-300: rgba(37, 124, 255, 0.2);
+  --secondary-500: rgba(37, 124, 255, 0.5);
+  --secondary-600: #257cff;
+  --secondary-900: #5196ff;
+
+  --neutral-50: rgba(255, 255, 255, 0.05);
+  --neutral-100: rgba(255, 255, 255, 0.1);
+  --neutral-300: rgba(255, 255, 255, 0.2);
+  --neutral-500: rgba(255, 255, 255, 0.5);
+  --neutral-600: #ffffff;
+  --neutral-900: #ffffff;
+
+  --white-50: rgba(20, 25, 25, 0.05);
+  --white-100: rgba(20, 25, 25, 0.1);
+  --white-300: rgba(20, 25, 25, 0.2);
+  --white-500: rgba(20, 25, 25, 0.5);
+  --white-600: #141919;
+  --white-900: #141919;
+
+  --sucess-50: rgba(31, 143, 79, 0.05);
+  --sucess-100: rgba(31, 143, 79, 0.1);
+  --sucess-300: rgba(31, 143, 79, 0.2);
+  --sucess-500: rgba(31, 143, 79, 0.5);
+  --sucess-600: #1f8f4f;
+  --sucess-900: #4ca572;
+
+  --error-50: rgba(150, 22, 22, 0.05);
+  --error-100: rgba(150, 22, 22, 0.1);
+  --error-300: rgba(150, 22, 22, 0.2);
+  --error-500: rgba(150, 22, 22, 0.5);
+  --error-600: #ee5522;
+  --error-900: #ea5151;
+
+  --warning-50: rgba(202, 138, 4, 0.05);
+  --warning-100: rgba(202, 138, 4, 0.1);
+  --warning-300: rgba(202, 138, 4, 0.2);
+  --warning-500: rgba(202, 138, 4, 0.5);
+  --warning-600: #ca8a04;
+  --warning-900: #d5a136;
+
+  --background-background: #0a0a0a;
+  --background-dashboard-background: #0a0a0a;
+  --background-button-background: #1daa65;
+  --background-button-tex-and-icon-light: #ffffff;
+  --background-button-tex-and-icon-dark: #0a0a0a;
+  --background-card-background: rgba(20, 25, 25, 0.5);
+}
+
+/* =========================================
+   BASE RESET
+   ========================================= */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family-type-family-primary), system-ui, sans-serif;
+  font-weight: var(--font-weight-type-weight-regular-400);
+  color: var(--neutral-900);
+  background: var(--background-background);
+}
