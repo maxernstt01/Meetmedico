@@ -1,0 +1,94 @@
+.alert {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-space-4);
+  padding: var(--spacing-space-4) var(--spacing-space-8);
+  border-radius: var(--radius-border-radius-8);
+}
+
+.icon {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+}
+
+.message {
+  font-family: var(--font-family-type-family-primary), system-ui, sans-serif;
+  font-weight: var(--font-weight-type-weight-medium-500);
+  font-size: var(--font-size-label);
+}
+
+/* Primary level: solid background, white text/icon */
+.primary.warning {
+  background-color: var(--warning-600);
+  color: var(--background-button-tex-and-icon-light);
+}
+
+.primary.warning .icon path {
+  stroke: var(--background-button-tex-and-icon-light);
+}
+
+.primary.error {
+  background-color: var(--error-600);
+  color: var(--background-button-tex-and-icon-light);
+}
+
+.primary.error .icon path {
+  stroke: var(--background-button-tex-and-icon-light);
+}
+
+.primary.info {
+  background-color: var(--secondary-600);
+  color: var(--background-button-tex-and-icon-light);
+}
+
+.primary.info .icon path {
+  stroke: var(--background-button-tex-and-icon-light);
+}
+
+.primary.success {
+  background-color: var(--sucess-600);
+  color: var(--background-button-tex-and-icon-light);
+}
+
+.primary.success .icon path {
+  stroke: var(--background-button-tex-and-icon-light);
+}
+
+/* Secondary level: tint background, colored text/icon */
+.secondary.warning {
+  background-color: var(--warning-100);
+  color: var(--warning-600);
+}
+
+.secondary.warning .icon path {
+  stroke: var(--warning-600);
+}
+
+.secondary.error {
+  background-color: var(--error-100);
+  color: var(--error-600);
+}
+
+.secondary.error .icon path {
+  stroke: var(--error-600);
+}
+
+.secondary.info {
+  background-color: var(--secondary-100);
+  color: var(--secondary-600);
+}
+
+.secondary.info .icon path {
+  stroke: var(--secondary-600);
+}
+
+.secondary.success {
+  background-color: var(--sucess-100);
+  color: var(--sucess-600);
+}
+
+.secondary.success .icon path {
+  stroke: var(--sucess-600);
+}

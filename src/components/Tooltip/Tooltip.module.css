@@ -1,0 +1,204 @@
+.wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip {
+  position: absolute;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-space-4);
+  max-width: 240px;
+  padding: var(--spacing-space-8) var(--spacing-space-12);
+  border-radius: var(--radius-border-radius-8);
+  background-color: var(--background-button-tex-and-icon-dark);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+}
+
+.wrapper:hover .tooltip,
+.wrapper:focus-within .tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+.title {
+  font-family: var(--font-family-type-family-primary), system-ui, sans-serif;
+  font-weight: var(--font-weight-type-weight-bold-700);
+  font-size: var(--font-size-label);
+  color: var(--background-button-tex-and-icon-light);
+}
+
+.description {
+  font-family: var(--font-family-type-family-primary), system-ui, sans-serif;
+  font-weight: var(--font-weight-type-weight-regular-400);
+  font-size: var(--font-size-caption);
+  color: var(--background-button-tex-and-icon-light);
+}
+
+.arrow {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: var(--background-button-tex-and-icon-dark);
+  transform: rotate(45deg);
+}
+
+/* Top group: tooltip above the trigger, arrow at the bottom edge */
+.top,
+.topLeft,
+.topRight {
+  bottom: calc(100% + var(--spacing-space-8));
+}
+
+.top {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.topLeft {
+  left: 0;
+}
+
+.topRight {
+  right: 0;
+}
+
+.top .arrow,
+.topLeft .arrow,
+.topRight .arrow {
+  bottom: -4px;
+}
+
+.top .arrow {
+  left: 50%;
+  margin-left: -4px;
+}
+
+.topLeft .arrow {
+  left: var(--spacing-space-12);
+}
+
+.topRight .arrow {
+  right: var(--spacing-space-12);
+}
+
+/* Bottom group: tooltip below the trigger, arrow at the top edge */
+.bottom,
+.bottomLeft,
+.bottomRight {
+  top: calc(100% + var(--spacing-space-8));
+}
+
+.bottom {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.bottomLeft {
+  left: 0;
+}
+
+.bottomRight {
+  right: 0;
+}
+
+.bottom .arrow,
+.bottomLeft .arrow,
+.bottomRight .arrow {
+  top: -4px;
+}
+
+.bottom .arrow {
+  left: 50%;
+  margin-left: -4px;
+}
+
+.bottomLeft .arrow {
+  left: var(--spacing-space-12);
+}
+
+.bottomRight .arrow {
+  right: var(--spacing-space-12);
+}
+
+/* Left group: tooltip to the left of the trigger, arrow at the right edge */
+.left,
+.leftTop,
+.leftBottom {
+  right: calc(100% + var(--spacing-space-8));
+}
+
+.left {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.leftTop {
+  top: 0;
+}
+
+.leftBottom {
+  bottom: 0;
+}
+
+.left .arrow,
+.leftTop .arrow,
+.leftBottom .arrow {
+  right: -4px;
+}
+
+.left .arrow {
+  top: 50%;
+  margin-top: -4px;
+}
+
+.leftTop .arrow {
+  top: var(--spacing-space-12);
+}
+
+.leftBottom .arrow {
+  bottom: var(--spacing-space-12);
+}
+
+/* Right group: tooltip to the right of the trigger, arrow at the left edge */
+.right,
+.rightTop,
+.rightBottom {
+  left: calc(100% + var(--spacing-space-8));
+}
+
+.right {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.rightTop {
+  top: 0;
+}
+
+.rightBottom {
+  bottom: 0;
+}
+
+.right .arrow,
+.rightTop .arrow,
+.rightBottom .arrow {
+  left: -4px;
+}
+
+.right .arrow {
+  top: 50%;
+  margin-top: -4px;
+}
+
+.rightTop .arrow {
+  top: var(--spacing-space-12);
+}
+
+.rightBottom .arrow {
+  bottom: var(--spacing-space-12);
+}

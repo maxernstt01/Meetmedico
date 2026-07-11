@@ -14,3 +14,6 @@ export * from './Label';
 export * from './Chip';
 export * from './PasswordInput';
 export * from './Divider';
+export * from './Tabs';
+export * from './Alert';
+export * from './Tooltip';

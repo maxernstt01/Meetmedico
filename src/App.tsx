@@ -2,7 +2,9 @@ import { useState, type CSSProperties } from 'react';
 import LocationIcon from '@/assets/icons/Primary Button/Location02Icon.svg?react';
 import CalendarIcon from '@/assets/icons/Primary Button/Calendar04Icon.svg?react';
 import ArrowDownIcon from '@/assets/icons/Primary Button/ArrowDown01Icon.svg?react';
+import EyeIcon from '@/assets/icons/Primary Button/EyeIcon.svg?react';
 import {
+  Alert,
   Badge,
   Button,
   Chip,
@@ -18,8 +20,10 @@ import {
   PasswordInput,
   PhoneNumberInput,
   Search,
+  Tabs,
   TextArea,
   TimePicker,
+  Tooltip,
 } from './components';
 
 const dropdownOptions = Array.from({ length: 7 }, (_, i) => ({
@@ -425,6 +429,245 @@ export default function App() {
           <Divider textAlign="right">Text</Divider>
           <Divider variant="dotted" textAlign="center">Text</Divider>
           <Divider variant="dash" textAlign="center">Text</Divider>
+        </div>
+      </section>
+
+      <section>
+        <h2>Tabs</h2>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-16)' }}>
+          <div>
+            <h3>With Icon, With Dropdown</h3>
+            <Tabs
+              items={[
+                { value: '1', label: 'Meet Medico', icon: EyeIcon, showDropdown: true },
+                { value: '2', label: 'Meet Medico', icon: EyeIcon, showDropdown: true },
+                { value: '3', label: 'Meet Medico', icon: EyeIcon, showDropdown: true, disabled: true },
+              ]}
+            />
+          </div>
+          <div>
+            <h3>With Icon, No Dropdown</h3>
+            <Tabs
+              items={[
+                { value: '1', label: 'Meet Medico', icon: EyeIcon },
+                { value: '2', label: 'Meet Medico', icon: EyeIcon },
+              ]}
+            />
+          </div>
+          <div>
+            <h3>No Icon, No Dropdown</h3>
+            <Tabs
+              items={[
+                { value: '1', label: 'Meet Medico' },
+                { value: '2', label: 'Meet Medico' },
+              ]}
+            />
+          </div>
+          <div>
+            <h3>Only Icon</h3>
+            <Tabs
+              items={[
+                { value: '1', icon: EyeIcon, ariaLabel: 'Preview' },
+                { value: '2', icon: EyeIcon, ariaLabel: 'Preview' },
+              ]}
+            />
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Box Tabs</h2>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-16)' }}>
+          <div>
+            <h3>With Icon, With Dropdown</h3>
+            <Tabs
+              variant="box"
+              items={[
+                { value: '1', label: 'Meet Medico', icon: EyeIcon, showDropdown: true },
+                { value: '2', label: 'Meet Medico', icon: EyeIcon, showDropdown: true },
+                { value: '3', label: 'Meet Medico', icon: EyeIcon, showDropdown: true, disabled: true },
+              ]}
+            />
+          </div>
+          <div>
+            <h3>No Icon, No Dropdown</h3>
+            <Tabs
+              variant="box"
+              items={[
+                { value: '1', label: 'Meet Medico' },
+                { value: '2', label: 'Meet Medico' },
+              ]}
+            />
+          </div>
+          <div>
+            <h3>Only Icon</h3>
+            <Tabs
+              variant="box"
+              items={[
+                { value: '1', icon: EyeIcon, ariaLabel: 'Preview' },
+                { value: '2', icon: EyeIcon, ariaLabel: 'Preview' },
+              ]}
+            />
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Segment Tabs</h2>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-16)' }}>
+          <div>
+            <h3>With Icon, With Dropdown</h3>
+            <Tabs
+              variant="segment"
+              items={[
+                { value: '1', label: 'Meet Medico', icon: EyeIcon, showDropdown: true },
+                { value: '2', label: 'Meet Medico', icon: EyeIcon, showDropdown: true },
+                { value: '3', label: 'Meet Medico', icon: EyeIcon, showDropdown: true },
+              ]}
+            />
+          </div>
+          <div>
+            <h3>No Icon, No Dropdown</h3>
+            <Tabs
+              variant="segment"
+              items={[
+                { value: '1', label: 'Meet Medico' },
+                { value: '2', label: 'Meet Medico' },
+              ]}
+            />
+          </div>
+          <div>
+            <h3>Only Icon</h3>
+            <Tabs
+              variant="segment"
+              items={[
+                { value: '1', icon: EyeIcon, ariaLabel: 'Preview' },
+                { value: '2', icon: EyeIcon, ariaLabel: 'Preview' },
+              ]}
+            />
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Alert Messages</h2>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--spacing-space-24)' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-16)', maxWidth: 320 }}>
+            <h3>Primary</h3>
+            <Alert type="warning">
+              Warning message will appear here can be up-to two lines not more than that
+            </Alert>
+            <Alert type="error">Error message will appear here</Alert>
+            <Alert type="info">
+              Informative message will appear here can be up-to two lines not more than that
+            </Alert>
+            <Alert type="success">
+              Success message will appear here can be up-to two lines not more than that
+            </Alert>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-16)', maxWidth: 320 }}>
+            <h3>Secondary</h3>
+            <Alert type="warning" level="secondary">
+              Warning message will appear here can be up-to two lines not more than that
+            </Alert>
+            <Alert type="error" level="secondary">Error message will appear here</Alert>
+            <Alert type="info" level="secondary">
+              Informative message will appear here can be up-to two lines not more than that
+            </Alert>
+            <Alert type="success" level="secondary">
+              Success message will appear here can be up-to two lines not more than that
+            </Alert>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-16)', maxWidth: 320 }}>
+            <h3>Primary, Without Icon</h3>
+            <Alert type="warning" showIcon={false}>
+              Warning message will appear here can be up-to two lines not more than that
+            </Alert>
+            <Alert type="error" showIcon={false}>Error message will appear here</Alert>
+            <Alert type="info" showIcon={false}>
+              Informative message will appear here can be up-to two lines not more than that
+            </Alert>
+            <Alert type="success" showIcon={false}>
+              Success message will appear here can be up-to two lines not more than that
+            </Alert>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-16)', maxWidth: 320 }}>
+            <h3>Secondary, Without Icon</h3>
+            <Alert type="warning" level="secondary" showIcon={false}>
+              Warning message will appear here can be up-to two lines not more than that
+            </Alert>
+            <Alert type="error" level="secondary" showIcon={false}>Error message will appear here</Alert>
+            <Alert type="info" level="secondary" showIcon={false}>
+              Informative message will appear here can be up-to two lines not more than that
+            </Alert>
+            <Alert type="success" level="secondary" showIcon={false}>
+              Success message will appear here can be up-to two lines not more than that
+            </Alert>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Tool Tip</h2>
+        <div style={{ padding: 'var(--spacing-space-24)' }}>
+          <h3>Default</h3>
+          <div style={{ marginBottom: 'var(--spacing-space-24)' }}>
+            <Tooltip title="Title" description="A Tooltip Description">
+              <Button variant="secondary">Hover me</Button>
+            </Tooltip>
+          </div>
+
+          <h3>Top</h3>
+          <div style={{ ...row, gap: 'var(--spacing-space-40)', marginBottom: 'var(--spacing-space-40)' }}>
+            <Tooltip title="Title" description="A Tooltip Description" placement="topLeft">
+              <Button variant="secondary">TL</Button>
+            </Tooltip>
+            <Tooltip title="Title" description="A Tooltip Description" placement="top">
+              <Button variant="secondary">Top</Button>
+            </Tooltip>
+            <Tooltip title="Title" description="A Tooltip Description" placement="topRight">
+              <Button variant="secondary">TR</Button>
+            </Tooltip>
+          </div>
+
+          <h3>Bottom</h3>
+          <div style={{ ...row, gap: 'var(--spacing-space-40)', marginBottom: 'var(--spacing-space-40)' }}>
+            <Tooltip title="Title" description="A Tooltip Description" placement="bottomLeft">
+              <Button variant="secondary">BL</Button>
+            </Tooltip>
+            <Tooltip title="Title" description="A Tooltip Description" placement="bottom">
+              <Button variant="secondary">Bottom</Button>
+            </Tooltip>
+            <Tooltip title="Title" description="A Tooltip Description" placement="bottomRight">
+              <Button variant="secondary">BR</Button>
+            </Tooltip>
+          </div>
+
+          <h3>Left</h3>
+          <div style={{ ...row, gap: 'var(--spacing-space-40)', marginBottom: 'var(--spacing-space-40)' }}>
+            <Tooltip title="Title" description="A Tooltip Description" placement="leftTop">
+              <Button variant="secondary">LT</Button>
+            </Tooltip>
+            <Tooltip title="Title" description="A Tooltip Description" placement="left">
+              <Button variant="secondary">Left</Button>
+            </Tooltip>
+            <Tooltip title="Title" description="A Tooltip Description" placement="leftBottom">
+              <Button variant="secondary">LB</Button>
+            </Tooltip>
+          </div>
+
+          <h3>Right</h3>
+          <div style={{ ...row, gap: 'var(--spacing-space-40)' }}>
+            <Tooltip title="Title" description="A Tooltip Description" placement="rightTop">
+              <Button variant="secondary">RT</Button>
+            </Tooltip>
+            <Tooltip title="Title" description="A Tooltip Description" placement="right">
+              <Button variant="secondary">Right</Button>
+            </Tooltip>
+            <Tooltip title="Title" description="A Tooltip Description" placement="rightBottom">
+              <Button variant="secondary">RB</Button>
+            </Tooltip>
+          </div>
         </div>
       </section>
     </div>
