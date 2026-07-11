@@ -68,13 +68,6 @@
   color: var(--neutral-900);
 }
 
-.divider {
-  flex-shrink: 0;
-  align-self: stretch;
-  width: 1px;
-  background-color: var(--neutral-300);
-}
-
 .nativeInput {
   flex: 1;
   min-width: 0;

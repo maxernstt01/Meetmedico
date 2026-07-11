@@ -17,3 +17,4 @@ export const Default: Story = {};
 export const Error: Story = {
   args: { error: true, helperText: 'Error helper text' },
 };
+export const Range: Story = { args: { mode: 'range' } };

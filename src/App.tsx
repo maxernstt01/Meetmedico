@@ -7,6 +7,7 @@ import {
   Button,
   Chip,
   DatePicker,
+  Divider,
   Dropdown,
   IconButton,
   ImageUpload,
@@ -14,6 +15,7 @@ import {
   Label,
   Logo,
   OTPInput,
+  PasswordInput,
   PhoneNumberInput,
   Search,
   TextArea,
@@ -187,6 +189,10 @@ export default function App() {
         <div style={inputCell}>
           <DatePicker label="Date" required />
         </div>
+        <div style={{ ...inputCell, marginTop: 'var(--spacing-space-12)' }}>
+          <h3>Date Range</h3>
+          <DatePicker label="Date" required mode="range" />
+        </div>
       </section>
 
       <section>
@@ -200,6 +206,43 @@ export default function App() {
         <h2>Phone Number Input</h2>
         <div style={inputCell}>
           <PhoneNumberInput label="Mobile Number" required placeholder="Enter here" />
+        </div>
+      </section>
+
+      <section>
+        <h2>Password Input</h2>
+        <div style={inputGrid}>
+          <div style={inputCell}>
+            <h3>Default</h3>
+            <PasswordInput label="Label" required placeholder="Enter password" />
+          </div>
+          <div style={inputCell}>
+            <h3>Filled</h3>
+            <PasswordInput label="Label" required defaultValue="Gtu6k_kdfj" />
+          </div>
+          <div style={inputCell}>
+            <h3>Error</h3>
+            <PasswordInput
+              label="Label"
+              required
+              defaultValue="Gtu6k_kdfj"
+              error
+              helperText="Error helper text"
+            />
+          </div>
+          <div style={inputCell}>
+            <h3>New Password Creating</h3>
+            <PasswordInput label="Label" required showRequirements placeholder="Enter password" />
+          </div>
+          <div style={inputCell}>
+            <h3>New Password Creating (filled)</h3>
+            <PasswordInput
+              label="Label"
+              required
+              showRequirements
+              defaultValue="Gtu6k_kdfj"
+            />
+          </div>
         </div>
       </section>
 
@@ -356,6 +399,32 @@ export default function App() {
           <IconButton variant="primary" icon={LocationIcon} aria-label="Location" disabled />
           <IconButton variant="secondary" icon={LocationIcon} aria-label="Location" />
           <IconButton variant="secondary" icon={LocationIcon} aria-label="Location" disabled />
+        </div>
+      </section>
+
+      <section>
+        <h2>Divider</h2>
+        <h3>Horizontal</h3>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-16)', maxWidth: 320 }}>
+          <Divider />
+          <Divider variant="dotted" />
+          <Divider variant="dash" />
+        </div>
+
+        <h3 style={{ marginTop: 'var(--spacing-space-16)' }}>Vertical</h3>
+        <div style={{ ...row, height: 24 }}>
+          <Divider orientation="vertical" />
+          <Divider orientation="vertical" variant="dotted" />
+          <Divider orientation="vertical" variant="dash" />
+        </div>
+
+        <h3 style={{ marginTop: 'var(--spacing-space-16)' }}>With Text</h3>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-16)', maxWidth: 320 }}>
+          <Divider textAlign="left">Text</Divider>
+          <Divider textAlign="center">Text</Divider>
+          <Divider textAlign="right">Text</Divider>
+          <Divider variant="dotted" textAlign="center">Text</Divider>
+          <Divider variant="dash" textAlign="center">Text</Divider>
         </div>
       </section>
     </div>

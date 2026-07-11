@@ -12,3 +12,5 @@ export * from './Dropdown';
 export * from './Badge';
 export * from './Label';
 export * from './Chip';
+export * from './PasswordInput';
+export * from './Divider';

@@ -1,4 +1,5 @@
 import { forwardRef, useEffect, useId, useState } from 'react';
+import { Divider } from '../Divider';
 import styles from './PhoneNumberInput.module.css';
 import type { PhoneNumberInputProps } from './PhoneNumberInput.types';
 
@@ -52,7 +53,7 @@ export const PhoneNumberInput = forwardRef<HTMLInputElement, PhoneNumberInputPro
             </label>
           )}
           <span className={styles.countryCode}>{countryCode}</span>
-          <span className={styles.divider} aria-hidden="true" />
+          <Divider orientation="vertical" />
           <input
             ref={ref}
             id={inputId}
