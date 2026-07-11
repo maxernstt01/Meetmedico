@@ -1,0 +1,89 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: 60px;
+  padding: var(--spacing-space-4) var(--spacing-space-8);
+  border-radius: var(--radius-border-radius-8);
+  background-color: var(--primary-50);
+  backdrop-filter: blur(12.5px);
+}
+
+.tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  flex: 1;
+  min-width: 0;
+  padding: var(--spacing-space-4) 0;
+  border: none;
+  border-radius: var(--radius-border-radius-8);
+  background-color: transparent;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
+.icon path {
+  stroke: var(--neutral-500);
+}
+
+.label {
+  font-family: var(--font-family-type-family-primary), system-ui, sans-serif;
+  font-weight: var(--font-weight-type-weight-medium-500);
+  font-size: var(--font-size-caption);
+  color: var(--neutral-500);
+}
+
+.tab:hover:not(.active) .icon path {
+  stroke: var(--neutral-600);
+}
+
+.tab:hover:not(.active) .label {
+  color: var(--neutral-600);
+}
+
+.tab.active {
+  background-color: var(--background-button-tex-and-icon-light);
+}
+
+.tab.active .icon path {
+  stroke: var(--primary-600);
+}
+
+.tab.active .label {
+  color: var(--primary-600);
+}
+
+.indicatorBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: 16px;
+  padding: var(--spacing-space-4) var(--spacing-space-8);
+  border-radius: var(--radius-border-radius-8);
+  background-color: var(--primary-50);
+  backdrop-filter: blur(12.5px);
+}
+
+.indicator {
+  width: 134px;
+  height: 4px;
+  border-radius: 20px;
+  background-color: var(--neutral-600);
+}

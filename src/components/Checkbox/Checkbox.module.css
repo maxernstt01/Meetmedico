@@ -1,0 +1,106 @@
+.wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-space-4);
+  cursor: pointer;
+  width: fit-content;
+}
+
+.wrapper:has(.nativeInput:disabled) {
+  cursor: not-allowed;
+}
+
+.nativeInput {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.nativeInput:disabled {
+  cursor: not-allowed;
+}
+
+.box {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 24px;
+  height: 24px;
+  padding: var(--spacing-space-4);
+  border: 1px solid var(--neutral-300);
+  border-radius: var(--radius-border-radius-8);
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.wrapper:hover .box {
+  border-color: var(--neutral-500);
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+}
+
+.icon path {
+  stroke: var(--neutral-300);
+}
+
+/* Checked: line variant (outlined) */
+.nativeInput:checked ~ .box.line {
+  border-color: var(--primary-600);
+}
+
+.nativeInput:checked ~ .box.line .icon path {
+  stroke: var(--primary-600);
+}
+
+/* Checked: fill variant (solid) */
+.nativeInput:checked ~ .box.fill {
+  border-color: transparent;
+  background-color: var(--primary-600);
+}
+
+.nativeInput:checked ~ .box.fill .icon path {
+  stroke: var(--background-button-tex-and-icon-light);
+}
+
+/* Disabled, unchecked */
+.nativeInput:disabled ~ .box {
+  border-color: var(--neutral-100);
+}
+
+.nativeInput:disabled ~ .box .icon path {
+  stroke: var(--neutral-100);
+}
+
+/* Disabled, checked: line variant */
+.nativeInput:disabled:checked ~ .box.line {
+  border-color: var(--primary-500);
+}
+
+.nativeInput:disabled:checked ~ .box.line .icon path {
+  stroke: var(--primary-500);
+}
+
+/* Disabled, checked: fill variant */
+.nativeInput:disabled:checked ~ .box.fill {
+  border-color: transparent;
+  background-color: var(--primary-500);
+}
+
+.nativeInput:disabled:checked ~ .box.fill .icon path {
+  stroke: var(--background-button-tex-and-icon-light);
+}
+
+.label {
+  font-family: var(--font-family-type-family-primary), system-ui, sans-serif;
+  font-weight: var(--font-weight-type-weight-medium-500);
+  font-size: var(--font-size-label);
+  color: var(--neutral-900);
+}

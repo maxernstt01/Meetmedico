@@ -1,0 +1,69 @@
+.wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-space-4);
+  cursor: pointer;
+  width: fit-content;
+}
+
+.wrapper:has(.nativeInput:disabled) {
+  cursor: not-allowed;
+}
+
+.nativeInput {
+  position: absolute;
+  width: 44px;
+  height: 24px;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.nativeInput:disabled {
+  cursor: not-allowed;
+}
+
+.track {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 44px;
+  height: 24px;
+  padding: var(--spacing-space-4);
+  border-radius: 9999px;
+  background-color: var(--neutral-300);
+  transition: background-color 0.15s ease;
+}
+
+.thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: var(--background-button-tex-and-icon-light);
+  transition: transform 0.15s ease;
+}
+
+.nativeInput:checked ~ .track {
+  background-color: var(--primary-600);
+}
+
+.nativeInput:checked ~ .track .thumb {
+  transform: translateX(20px);
+}
+
+.nativeInput:disabled ~ .track {
+  background-color: var(--neutral-100);
+}
+
+.nativeInput:disabled:checked ~ .track {
+  background-color: var(--primary-500);
+}
+
+.label {
+  font-family: var(--font-family-type-family-primary), system-ui, sans-serif;
+  font-weight: var(--font-weight-type-weight-medium-500);
+  font-size: var(--font-size-label);
+  color: var(--neutral-900);
+}

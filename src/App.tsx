@@ -3,14 +3,23 @@ import LocationIcon from '@/assets/icons/Primary Button/Location02Icon.svg?react
 import CalendarIcon from '@/assets/icons/Primary Button/Calendar04Icon.svg?react';
 import ArrowDownIcon from '@/assets/icons/Primary Button/ArrowDown01Icon.svg?react';
 import EyeIcon from '@/assets/icons/Primary Button/EyeIcon.svg?react';
+import Home02Icon from '@/assets/icons/Primary Button/Home02Icon.svg?react';
+import MedicalFileIcon from '@/assets/icons/Primary Button/MedicalFileIcon.svg?react';
+import CalendarSetting02Icon from '@/assets/icons/Primary Button/CalendarSetting02Icon.svg?react';
+import Settings01Icon from '@/assets/icons/Primary Button/Settings01Icon.svg?react';
+import UserIcon from '@/assets/icons/Primary Button/UserIcon.svg?react';
 import {
   Alert,
+  AppFooter,
+  AppHeader,
   Badge,
   Button,
+  Checkbox,
   Chip,
   DatePicker,
   Divider,
   Dropdown,
+  DotsLoader,
   IconButton,
   ImageUpload,
   Input,
@@ -19,11 +28,15 @@ import {
   OTPInput,
   PasswordInput,
   PhoneNumberInput,
+  Radio,
   Search,
+  Switch,
   Tabs,
   TextArea,
   TimePicker,
   Tooltip,
+  Skeleton,
+  Spinner,
 } from './components';
 
 const dropdownOptions = Array.from({ length: 7 }, (_, i) => ({
@@ -667,6 +680,148 @@ export default function App() {
             <Tooltip title="Title" description="A Tooltip Description" placement="rightBottom">
               <Button variant="secondary">RB</Button>
             </Tooltip>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Checkbox</h2>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-16)' }}>
+          <div style={row}>
+            <Checkbox label="Default" />
+            <Checkbox label="Line, Checked" variant="line" defaultChecked />
+            <Checkbox label="Fill, Checked" variant="fill" defaultChecked />
+          </div>
+          <div style={row}>
+            <Checkbox label="Disabled" disabled />
+            <Checkbox label="Disabled, Checked (Line)" variant="line" defaultChecked disabled />
+            <Checkbox label="Disabled, Checked (Fill)" variant="fill" defaultChecked disabled />
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Radio</h2>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-16)' }}>
+          <div style={row}>
+            <Radio name="radio-demo-1" label="Default" />
+            <Radio name="radio-demo-1" label="Checked" defaultChecked />
+          </div>
+          <div style={row}>
+            <Radio name="radio-demo-2" label="Disabled" disabled />
+            <Radio name="radio-demo-2" label="Disabled, Checked" defaultChecked disabled />
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Switch</h2>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-16)' }}>
+          <div style={row}>
+            <Switch label="Default" />
+            <Switch label="Active" defaultChecked />
+          </div>
+          <div style={row}>
+            <Switch label="Disabled" disabled />
+            <Switch label="Disabled, Active" defaultChecked disabled />
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>App Header</h2>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-24)' }}>
+          <div>
+            <h3>Main Header</h3>
+            <div style={{ maxWidth: 360, border: '1px solid var(--neutral-100)' }}>
+              <AppHeader variant="main" onSearch={() => {}} />
+            </div>
+          </div>
+          <div>
+            <h3>Back Button Only</h3>
+            <div style={{ maxWidth: 360, border: '1px solid var(--neutral-100)' }}>
+              <AppHeader variant="back" onBack={() => {}} />
+            </div>
+          </div>
+          <div>
+            <h3>Back and Action</h3>
+            <div style={{ maxWidth: 360, border: '1px solid var(--neutral-100)' }}>
+              <AppHeader
+                variant="back"
+                onBack={() => {}}
+                action={
+                  <Button variant="tertiary" onClick={() => {}}>
+                    Skip To Home
+                  </Button>
+                }
+              />
+            </div>
+          </div>
+          <div>
+            <h3>Back and Label</h3>
+            <div style={{ maxWidth: 360, border: '1px solid var(--neutral-100)' }}>
+              <AppHeader variant="back" onBack={() => {}} label="Label" />
+            </div>
+          </div>
+          <div>
+            <h3>Back and Label and Supporting Text</h3>
+            <div style={{ maxWidth: 360, border: '1px solid var(--neutral-100)' }}>
+              <AppHeader
+                variant="back"
+                onBack={() => {}}
+                label="Label"
+                supportingText="1/3 Steps"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>App Footer</h2>
+        <div style={{ maxWidth: 360 }}>
+          <AppFooter
+            items={[
+              { value: 'home', label: 'Home', icon: Home02Icon },
+              { value: 'records', label: 'My Records', icon: MedicalFileIcon },
+              { value: 'events', label: 'Events', icon: CalendarSetting02Icon },
+              { value: 'settings', label: 'Settings', icon: Settings01Icon },
+              { value: 'profile', label: 'Profile', icon: UserIcon },
+            ]}
+          />
+        </div>
+      </section>
+
+      <section>
+        <h2>Loader</h2>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-24)' }}>
+          <div>
+            <h3>Circle Loader</h3>
+            <div style={row}>
+              <Spinner size={24} />
+              <Spinner size={32} />
+              <Spinner size={48} />
+            </div>
+          </div>
+          <div>
+            <h3>Dotted Loader</h3>
+            <div style={row}>
+              <DotsLoader />
+              <DotsLoader size={12} />
+            </div>
+          </div>
+          <div>
+            <h3>Skeleton</h3>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-16)', maxWidth: 280 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-space-12)' }}>
+                <Skeleton shape="circle" />
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-8)', flex: 1 }}>
+                  <Skeleton shape="text" width="60%" />
+                  <Skeleton shape="text" width="90%" />
+                </div>
+              </div>
+              <Skeleton shape="rect" height={100} />
+            </div>
           </div>
         </div>
       </section>
