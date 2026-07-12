@@ -1,0 +1,163 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-space-12);
+}
+
+.wrapper.circle {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-space-8);
+}
+
+.wrapper.circle.micro {
+  flex-direction: row;
+  gap: var(--spacing-space-8);
+}
+
+.label {
+  flex-shrink: 0;
+  font-family: var(--font-family-type-family-primary), system-ui, sans-serif;
+  font-weight: var(--font-weight-type-weight-medium-500);
+  font-size: var(--font-size-label);
+  color: var(--neutral-900);
+  white-space: nowrap;
+}
+
+/* ---------- Line ---------- */
+
+.track {
+  position: relative;
+  flex: 1;
+  min-width: 80px;
+  width: 100%;
+  border-radius: var(--radius-border-radius-8);
+  background-color: var(--neutral-100);
+  overflow: hidden;
+}
+
+.track.default {
+  height: 8px;
+}
+
+.track.small {
+  height: 6px;
+}
+
+.fill {
+  height: 100%;
+  border-radius: var(--radius-border-radius-8);
+  transition: width var(--duration-base) ease;
+}
+
+.fill.pulsing {
+  animation: progressPulse var(--duration-slower) ease-in-out infinite;
+}
+
+@keyframes progressPulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.info {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-family-type-family-primary), system-ui, sans-serif;
+  font-weight: var(--font-weight-type-weight-medium-500);
+  font-size: var(--font-size-label);
+  color: var(--neutral-900);
+  white-space: nowrap;
+}
+
+.statusIcon {
+  width: 16px;
+  height: 16px;
+}
+
+.statusIcon.success path {
+  stroke: var(--sucess-600);
+}
+
+.statusIcon.error path {
+  stroke: var(--error-600);
+}
+
+/* ---------- Colors (line fill + circle stroke) ---------- */
+
+.fill.primary,
+.circleFill.primary {
+  background-color: var(--primary-600);
+  stroke: var(--primary-600);
+}
+
+.fill.secondary,
+.circleFill.secondary {
+  background-color: var(--secondary-600);
+  stroke: var(--secondary-600);
+}
+
+.fill.success,
+.circleFill.success {
+  background-color: var(--sucess-600);
+  stroke: var(--sucess-600);
+}
+
+.fill.error,
+.circleFill.error {
+  background-color: var(--error-600);
+  stroke: var(--error-600);
+}
+
+/* ---------- Circle ---------- */
+
+.circleContainer {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circleTrack {
+  stroke: var(--neutral-100);
+}
+
+.circleFill {
+  transition: stroke-dashoffset var(--duration-base) ease;
+}
+
+.circleContainer.spinning svg {
+  animation: progressSpin 1s linear infinite;
+  transform-origin: center;
+}
+
+@keyframes progressSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.circleInfo {
+  position: absolute;
+  font-family: var(--font-family-type-family-primary), system-ui, sans-serif;
+  font-weight: var(--font-weight-type-weight-bold-700);
+  color: var(--neutral-900);
+}
+
+.circleInfo.circleInfoIcon {
+  display: inline-flex;
+}
+
+.microIcon {
+  position: absolute;
+  display: inline-flex;
+}

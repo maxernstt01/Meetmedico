@@ -1,0 +1,127 @@
+.root {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-index-drawer);
+  pointer-events: none;
+}
+
+.rootOpen {
+  pointer-events: auto;
+}
+
+.mask {
+  position: absolute;
+  inset: 0;
+  transition: opacity var(--duration-fast) ease, backdrop-filter var(--duration-fast) ease;
+}
+
+.mask.dimmed {
+  background-color: var(--neutral-900);
+  opacity: 0;
+}
+
+.mask.dimmed.maskOpen {
+  opacity: var(--opacity-40);
+}
+
+.mask.blur {
+  background-color: transparent;
+  backdrop-filter: blur(0px);
+}
+
+.mask.blur.maskOpen {
+  backdrop-filter: blur(8px);
+}
+
+.panel {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  background-color: var(--background-background);
+  transition: transform var(--duration-base) ease;
+}
+
+.panel.right {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(400px, 100%);
+  border-left: 1px solid var(--neutral-100);
+  transform: translateX(100%);
+}
+
+.panel.left {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: min(400px, 100%);
+  border-right: 1px solid var(--neutral-100);
+  transform: translateX(-100%);
+}
+
+.panel.top {
+  top: 0;
+  left: 0;
+  right: 0;
+  height: min(400px, 100%);
+  border-bottom: 1px solid var(--neutral-100);
+  transform: translateY(-100%);
+}
+
+.panel.bottom {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: min(400px, 100%);
+  border-top: 1px solid var(--neutral-100);
+  transform: translateY(100%);
+}
+
+.panel.panelOpen {
+  transform: translate(0, 0);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-space-8);
+  padding: var(--spacing-space-16);
+}
+
+.closeButton {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+
+.closeIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.closeIcon path {
+  stroke: var(--neutral-600);
+}
+
+.body {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--spacing-space-16);
+}
+
+.footer {
+  padding: var(--spacing-space-16);
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-space-12);
+}

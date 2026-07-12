@@ -48,10 +48,6 @@
 .label {
   flex: 1;
   min-width: 0;
-  font-family: var(--font-family-type-family-primary), system-ui, sans-serif;
-  font-weight: var(--font-weight-type-weight-medium-500);
-  font-size: var(--font-size-label);
-  color: var(--neutral-900);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -59,8 +55,4 @@
 
 .supportingText {
   flex-shrink: 0;
-  font-family: var(--font-family-type-family-primary), system-ui, sans-serif;
-  font-weight: var(--font-weight-type-weight-medium-500);
-  font-size: var(--font-size-caption);
-  color: var(--neutral-500);
 }

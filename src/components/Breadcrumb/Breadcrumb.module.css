@@ -1,0 +1,68 @@
+.breadcrumb {
+  width: 100%;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-space-8);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.segment {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-space-4);
+}
+
+.link {
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: var(--font-family-type-family-primary), system-ui, sans-serif;
+  font-weight: var(--font-weight-type-weight-regular-400);
+  font-size: var(--font-size-label);
+  color: var(--neutral-500);
+}
+
+a.link:hover,
+button.link:hover {
+  color: var(--primary-600);
+}
+
+.active {
+  font-family: var(--font-family-type-family-primary), system-ui, sans-serif;
+  font-weight: var(--font-weight-type-weight-bold-700);
+  font-size: var(--font-size-label);
+}
+
+.activePrimary {
+  color: var(--primary-600);
+}
+
+.activeNeutral {
+  color: var(--neutral-600);
+}
+
+.ellipsis {
+  font-family: var(--font-family-type-family-primary), system-ui, sans-serif;
+  font-weight: var(--font-weight-type-weight-regular-400);
+  font-size: var(--font-size-label);
+  color: var(--neutral-500);
+}
+
+.chevron {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+}
+
+.chevron path {
+  stroke: var(--neutral-500);
+}

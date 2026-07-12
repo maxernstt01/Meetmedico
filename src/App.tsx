@@ -8,7 +8,10 @@ import MedicalFileIcon from '@/assets/icons/Primary Button/MedicalFileIcon.svg?r
 import CalendarSetting02Icon from '@/assets/icons/Primary Button/CalendarSetting02Icon.svg?react';
 import Settings01Icon from '@/assets/icons/Primary Button/Settings01Icon.svg?react';
 import UserIcon from '@/assets/icons/Primary Button/UserIcon.svg?react';
+import CheckmarkCircle02Icon from '@/assets/icons/Primary Button/CheckmarkCircle02Icon.svg?react';
+import type { DrawerPlacement, NavigationItem } from './components';
 import {
+  Accordion,
   Alert,
   AppFooter,
   AppHeader,
@@ -18,6 +21,7 @@ import {
   Chip,
   DatePicker,
   Divider,
+  Drawer,
   Dropdown,
   DotsLoader,
   IconButton,
@@ -37,6 +41,12 @@ import {
   Tooltip,
   Skeleton,
   Spinner,
+  Typography,
+  Progress,
+  Navigation,
+  Breadcrumb,
+  Pagination,
+  Steps,
 } from './components';
 
 const dropdownOptions = Array.from({ length: 7 }, (_, i) => ({
@@ -62,6 +72,153 @@ const searchResults = [
   },
 ];
 
+const faqItems = [
+  {
+    key: 'attend',
+    title: 'Who should attend this workshop?',
+    children:
+      'This workshop is ideal for healthcare professionals, medical students, nursing students, interpreters, and anyone interested in learning Medical Spanish.',
+  },
+  { key: 'free', title: 'Is the workshop free?', children: 'Yes, the workshop is free to attend.' },
+  {
+    key: 'spanish',
+    title: 'Do I need to know Spanish before attending?',
+    children: 'No prior Spanish knowledge is required.',
+  },
+  {
+    key: 'certificate',
+    title: 'Will I receive a certificate?',
+    children: 'Yes, a certificate of completion will be provided.',
+  },
+  {
+    key: 'recorded',
+    title: 'Will the workshop be recorded?',
+    children: 'Yes, a recording will be shared with all registered attendees.',
+    disabled: true,
+  },
+];
+
+const navHorizontalItems: NavigationItem[] = [
+  { key: 'home', label: 'Home' },
+  {
+    key: 'professionals',
+    label: 'Professionals',
+    children: [
+      { key: 'doctors', label: 'Doctors' },
+      { key: 'interpreters', label: 'Interpreters' },
+    ],
+  },
+  {
+    key: 'health-services',
+    label: 'Health Services',
+    children: [
+      { key: 'clinics', label: 'Clinics' },
+      { key: 'pharmacies', label: 'Pharmacies' },
+    ],
+  },
+  { key: 'events', label: 'Events' },
+];
+
+const navHorizontalIconItems: NavigationItem[] = navHorizontalItems.map((item) => ({
+  ...item,
+  icon: Home02Icon,
+}));
+
+const navHorizontalThreeLevelItems: NavigationItem[] = [
+  { key: 'home-3l', label: 'Home' },
+  {
+    key: 'professionals-3l',
+    label: 'Professionals',
+    children: [
+      {
+        key: 'doctors-3l',
+        label: 'Doctors',
+        children: [
+          { key: 'general-3l', label: 'General Physicians' },
+          { key: 'specialists-3l', label: 'Specialists' },
+          { key: 'surgeons-3l', label: 'Surgeons' },
+        ],
+      },
+      {
+        key: 'nurses-3l',
+        label: 'Nurses',
+        children: [
+          { key: 'staff-nurses-3l', label: 'Staff Nurses' },
+          { key: 'nurse-practitioners-3l', label: 'Nurse Practitioners' },
+        ],
+      },
+      { key: 'interpreters-3l', label: 'Interpreters' },
+    ],
+  },
+  { key: 'events-3l', label: 'Events' },
+];
+
+const navVerticalItems: NavigationItem[] = [
+  { key: 'nav-one', label: 'Navigation One', icon: Home02Icon },
+  {
+    key: 'nav-two',
+    label: 'Navigation Two',
+    icon: Settings01Icon,
+    children: [
+      { key: 'nav-two-opt1', label: 'Option 1' },
+      { key: 'nav-two-opt2', label: 'Option 2' },
+      {
+        key: 'nav-two-submenu',
+        label: 'Submenu',
+        children: [
+          { key: 'nav-two-sub-opt1', label: 'Option 1' },
+          { key: 'nav-two-sub-opt2', label: 'Option 2' },
+          { key: 'nav-two-sub-opt3', label: 'Option 3' },
+        ],
+      },
+      {
+        key: 'nav-two-submenu2',
+        label: 'Submenu 2',
+        children: [
+          {
+            key: 'nav-two-submenu2-nested',
+            label: 'Nested Submenu',
+            children: [{ key: 'nav-two-submenu2-nested-opt1', label: 'Option 1' }],
+          },
+        ],
+      },
+    ],
+  },
+  { key: 'nav-three', label: 'Navigation Three', icon: UserIcon, disabled: true },
+];
+
+const breadcrumbItems = [
+  { key: 'home', label: 'Home', href: '#' },
+  { key: 'menu1', label: 'Menu1', href: '#' },
+  { key: 'menu2', label: 'Menu2', href: '#' },
+  { key: 'menu2b', label: 'Menu2' },
+];
+
+const stepsItems = [
+  { key: 'finished', title: 'Finished', description: 'This is a content.' },
+  { key: 'in-progress', title: 'In Progress', description: 'This is a content.' },
+  { key: 'waiting', title: 'Waiting', description: 'This is a content.' },
+];
+
+const stepsWithExtraItems = [
+  { key: 'finished', title: 'Finished', description: 'This is a content.' },
+  { key: 'in-progress', title: 'In Progress', description: 'This is a content.', extra: 'Left 00:00:08' },
+  { key: 'waiting', title: 'Waiting', description: 'This is a content.' },
+];
+
+const stepsIconItems = [
+  { key: 'login', title: 'Login', icon: UserIcon },
+  { key: 'verification', title: 'Verification', icon: MedicalFileIcon },
+  { key: 'pay', title: 'Pay', icon: CalendarSetting02Icon },
+  { key: 'done', title: 'Done', icon: CheckmarkCircle02Icon },
+];
+
+const sectionStyle: CSSProperties = {
+  display: 'flex',
+  flexDirection: 'column',
+  gap: 'var(--spacing-space-12)',
+};
+
 const row: CSSProperties = {
   display: 'flex',
   gap: 'var(--spacing-space-12)',
@@ -77,11 +234,48 @@ const inputGrid: CSSProperties = {
 
 const inputCell: CSSProperties = {
   width: 280,
+  display: 'flex',
+  flexDirection: 'column',
+  gap: 'var(--spacing-space-8)',
+};
+
+const subCell: CSSProperties = {
+  display: 'flex',
+  flexDirection: 'column',
+  gap: 'var(--spacing-space-8)',
 };
 
 export default function App() {
   const [chipSelected, setChipSelected] = useState(true);
   const [chipToggled, setChipToggled] = useState(false);
+  const [drawerNormal, setDrawerNormal] = useState<{ open: boolean; placement: DrawerPlacement }>({
+    open: false,
+    placement: 'right',
+  });
+  const [drawerNoClose, setDrawerNoClose] = useState<{ open: boolean; placement: DrawerPlacement }>({
+    open: false,
+    placement: 'right',
+  });
+  const [drawerActions, setDrawerActions] = useState<{ open: boolean; placement: DrawerPlacement }>({
+    open: false,
+    placement: 'right',
+  });
+  const [drawerMaskNoneOpen, setDrawerMaskNoneOpen] = useState(false);
+  const [drawerMaskBlurOpen, setDrawerMaskBlurOpen] = useState(false);
+  const [drawerMaskDimmedOpen, setDrawerMaskDimmedOpen] = useState(false);
+  const [drawerLevel1, setDrawerLevel1] = useState<{ open: boolean; placement: DrawerPlacement }>({
+    open: false,
+    placement: 'right',
+  });
+  const [drawerLevel2Open, setDrawerLevel2Open] = useState(false);
+  const [stepsCurrent, setStepsCurrent] = useState(0);
+
+  const placements: { value: DrawerPlacement; label: string }[] = [
+    { value: 'top', label: 'Top' },
+    { value: 'right', label: 'Right' },
+    { value: 'bottom', label: 'Bottom' },
+    { value: 'left', label: 'Left' },
+  ];
 
   return (
     <div
@@ -92,16 +286,16 @@ export default function App() {
         gap: 'var(--spacing-space-24)',
       }}
     >
-      <section>
-        <h2>Logo</h2>
+      <section style={sectionStyle}>
+        <Typography variant="h2">Logo</Typography>
         <div style={row}>
           <Logo variant="default" />
           <Logo variant="responsive" />
         </div>
       </section>
 
-      <section>
-        <h2>Primary Button</h2>
+      <section style={sectionStyle}>
+        <Typography variant="h2">Primary Button</Typography>
         <div style={row}>
           <Button variant="primary" leftIcon={LocationIcon} rightIcon={CalendarIcon}>
             Button Label
@@ -112,8 +306,8 @@ export default function App() {
         </div>
       </section>
 
-      <section>
-        <h2>Secondary Button</h2>
+      <section style={sectionStyle}>
+        <Typography variant="h2">Secondary Button</Typography>
         <div style={row}>
           <Button variant="secondary" leftIcon={LocationIcon} rightIcon={CalendarIcon}>
             View PDF
@@ -124,8 +318,8 @@ export default function App() {
         </div>
       </section>
 
-      <section>
-        <h2>Tertiary Button</h2>
+      <section style={sectionStyle}>
+        <Typography variant="h2">Tertiary Button</Typography>
         <div style={row}>
           <Button variant="tertiary" leftIcon={LocationIcon} rightIcon={CalendarIcon}>
             Skip To Home
@@ -136,8 +330,8 @@ export default function App() {
         </div>
       </section>
 
-      <section>
-        <h2>Error Button</h2>
+      <section style={sectionStyle}>
+        <Typography variant="h2">Error Button</Typography>
         <div style={row}>
           <Button variant="error" leftIcon={LocationIcon} rightIcon={CalendarIcon}>
             Button Label
@@ -148,19 +342,19 @@ export default function App() {
         </div>
       </section>
 
-      <section>
-        <h2>Text Input</h2>
+      <section style={sectionStyle}>
+        <Typography variant="h2">Text Input</Typography>
         <div style={inputGrid}>
           <div style={inputCell}>
-            <h3>Default</h3>
+            <Typography variant="h3">Default</Typography>
             <Input label="Label" required placeholder="Enter here" />
           </div>
           <div style={inputCell}>
-            <h3>With Helper Text</h3>
+            <Typography variant="h3">With Helper Text</Typography>
             <Input label="Label" required placeholder="Enter here" helperText="Support Text" />
           </div>
           <div style={inputCell}>
-            <h3>With Helper Text &amp; Icon</h3>
+            <Typography variant="h3">With Helper Text &amp; Icon</Typography>
             <Input
               label="Label"
               required
@@ -170,19 +364,19 @@ export default function App() {
             />
           </div>
           <div style={inputCell}>
-            <h3>With Icon (Right)</h3>
+            <Typography variant="h3">With Icon (Right)</Typography>
             <Input label="Label" required placeholder="Enter here" rightIcon={LocationIcon} />
           </div>
           <div style={inputCell}>
-            <h3>With Icon (Left)</h3>
+            <Typography variant="h3">With Icon (Left)</Typography>
             <Input label="Label" required placeholder="Enter here" leftIcon={LocationIcon} />
           </div>
           <div style={inputCell}>
-            <h3>Filled</h3>
+            <Typography variant="h3">Filled</Typography>
             <Input label="Label" required defaultValue="Qadir AK" />
           </div>
           <div style={inputCell}>
-            <h3>Error</h3>
+            <Typography variant="h3">Error</Typography>
             <Input
               label="Label"
               required
@@ -194,51 +388,51 @@ export default function App() {
         </div>
       </section>
 
-      <section>
-        <h2>Text Area</h2>
+      <section style={sectionStyle}>
+        <Typography variant="h2">Text Area</Typography>
         <div style={inputCell}>
           <TextArea label="Label" required placeholder="Add description here" maxLength={500} />
         </div>
       </section>
 
-      <section>
-        <h2>Date Picker</h2>
+      <section style={sectionStyle}>
+        <Typography variant="h2">Date Picker</Typography>
         <div style={inputCell}>
           <DatePicker label="Date" required />
         </div>
         <div style={{ ...inputCell, marginTop: 'var(--spacing-space-12)' }}>
-          <h3>Date Range</h3>
+          <Typography variant="h3">Date Range</Typography>
           <DatePicker label="Date" required mode="range" />
         </div>
       </section>
 
-      <section>
-        <h2>Time Picker</h2>
+      <section style={sectionStyle}>
+        <Typography variant="h2">Time Picker</Typography>
         <div style={inputCell}>
           <TimePicker label="Time" required />
         </div>
       </section>
 
-      <section>
-        <h2>Phone Number Input</h2>
+      <section style={sectionStyle}>
+        <Typography variant="h2">Phone Number Input</Typography>
         <div style={inputCell}>
           <PhoneNumberInput label="Mobile Number" required placeholder="Enter here" />
         </div>
       </section>
 
-      <section>
-        <h2>Password Input</h2>
+      <section style={sectionStyle}>
+        <Typography variant="h2">Password Input</Typography>
         <div style={inputGrid}>
           <div style={inputCell}>
-            <h3>Default</h3>
+            <Typography variant="h3">Default</Typography>
             <PasswordInput label="Label" required placeholder="Enter password" />
           </div>
           <div style={inputCell}>
-            <h3>Filled</h3>
+            <Typography variant="h3">Filled</Typography>
             <PasswordInput label="Label" required defaultValue="Gtu6k_kdfj" />
           </div>
           <div style={inputCell}>
-            <h3>Error</h3>
+            <Typography variant="h3">Error</Typography>
             <PasswordInput
               label="Label"
               required
@@ -248,11 +442,11 @@ export default function App() {
             />
           </div>
           <div style={inputCell}>
-            <h3>New Password Creating</h3>
+            <Typography variant="h3">New Password Creating</Typography>
             <PasswordInput label="Label" required showRequirements placeholder="Enter password" />
           </div>
           <div style={inputCell}>
-            <h3>New Password Creating (filled)</h3>
+            <Typography variant="h3">New Password Creating (filled)</Typography>
             <PasswordInput
               label="Label"
               required
@@ -263,59 +457,59 @@ export default function App() {
         </div>
       </section>
 
-      <section>
-        <h2>Upload Image</h2>
+      <section style={sectionStyle}>
+        <Typography variant="h2">Upload Image</Typography>
         <div style={inputCell}>
           <ImageUpload label="Label" required helperText="Supported file information" />
         </div>
       </section>
 
-      <section>
-        <h2>Enter OTP</h2>
+      <section style={sectionStyle}>
+        <Typography variant="h2">Enter OTP</Typography>
         <div style={inputCell}>
           <OTPInput label="Enter OTP" required />
         </div>
       </section>
 
-      <section>
-        <h2>Search</h2>
+      <section style={sectionStyle}>
+        <Typography variant="h2">Search</Typography>
         <div style={inputGrid}>
           <div style={inputCell}>
-            <h3>Default</h3>
+            <Typography variant="h3">Default</Typography>
             <Search placeholder="Search by Location" />
           </div>
           <div style={inputCell}>
-            <h3>Filled (with clear)</h3>
+            <Typography variant="h3">Filled (with clear)</Typography>
             <Search defaultValue="Token News" />
           </div>
           <div style={{ ...inputCell, width: 320 }}>
-            <h3>After search show data</h3>
+            <Typography variant="h3">After search show data</Typography>
             <Search defaultValue="Token News" results={searchResults} />
           </div>
         </div>
       </section>
 
-      <section>
-        <h2>Dropdown</h2>
+      <section style={sectionStyle}>
+        <Typography variant="h2">Dropdown</Typography>
         <div style={inputGrid}>
           <div style={inputCell}>
-            <h3>With Support Text</h3>
+            <Typography variant="h3">With Support Text</Typography>
             <Dropdown label="Dropdown" required options={dropdownOptions} helperText="Support Text" />
           </div>
           <div style={inputCell}>
-            <h3>Without Support Text</h3>
+            <Typography variant="h3">Without Support Text</Typography>
             <Dropdown label="Dropdown" required options={dropdownOptions} />
           </div>
           <div style={inputCell}>
-            <h3>Normal (open on click)</h3>
+            <Typography variant="h3">Normal (open on click)</Typography>
             <Dropdown label="Dropdown" required options={dropdownOptions} />
           </div>
           <div style={inputCell}>
-            <h3>Single Select</h3>
+            <Typography variant="h3">Single Select</Typography>
             <Dropdown label="Dropdown" required mode="single" options={dropdownOptions} />
           </div>
           <div style={inputCell}>
-            <h3>Multi Select</h3>
+            <Typography variant="h3">Multi Select</Typography>
             <Dropdown
               label="Dropdown"
               required
@@ -325,11 +519,11 @@ export default function App() {
             />
           </div>
           <div style={inputCell}>
-            <h3>Tertiary</h3>
+            <Typography variant="h3">Tertiary</Typography>
             <Dropdown variant="tertiary" label="Dropdown" options={dropdownOptions} />
           </div>
           <div style={inputCell}>
-            <h3>Multi-select Picker (selected list showing)</h3>
+            <Typography variant="h3">Multi-select Picker (selected list showing)</Typography>
             <Dropdown
               label="Dropdown"
               required
@@ -342,8 +536,8 @@ export default function App() {
         </div>
       </section>
 
-      <section>
-        <h2>Badges</h2>
+      <section style={sectionStyle}>
+        <Typography variant="h2">Badges</Typography>
         <div style={row}>
           <Badge variant="neutral">Neutral</Badge>
           <Badge variant="info">Info</Badge>
@@ -360,8 +554,8 @@ export default function App() {
         </div>
       </section>
 
-      <section>
-        <h2>Labels</h2>
+      <section style={sectionStyle}>
+        <Typography variant="h2">Labels</Typography>
         <div style={row}>
           <Label variant="neutral">Neutral</Label>
           <Label variant="info">Info</Label>
@@ -378,8 +572,8 @@ export default function App() {
         </div>
       </section>
 
-      <section>
-        <h2>Chips</h2>
+      <section style={sectionStyle}>
+        <Typography variant="h2">Chips</Typography>
         <div style={row}>
           <Chip>Default</Chip>
           <Chip icon={ArrowDownIcon}>Default</Chip>
@@ -409,8 +603,8 @@ export default function App() {
         </div>
       </section>
 
-      <section>
-        <h2>Icon Button</h2>
+      <section style={sectionStyle}>
+        <Typography variant="h2">Icon Button</Typography>
         <div style={row}>
           <IconButton variant="primary" icon={LocationIcon} aria-label="Location" />
           <IconButton variant="primary" icon={LocationIcon} aria-label="Location" disabled />
@@ -419,23 +613,27 @@ export default function App() {
         </div>
       </section>
 
-      <section>
-        <h2>Divider</h2>
-        <h3>Horizontal</h3>
+      <section style={sectionStyle}>
+        <Typography variant="h2">Divider</Typography>
+        <Typography variant="h3">Horizontal</Typography>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-16)', maxWidth: 320 }}>
           <Divider />
           <Divider variant="dotted" />
           <Divider variant="dash" />
         </div>
 
-        <h3 style={{ marginTop: 'var(--spacing-space-16)' }}>Vertical</h3>
+        <Typography variant="h3" style={{ marginTop: 'var(--spacing-space-16)' }}>
+          Vertical
+        </Typography>
         <div style={{ ...row, height: 24 }}>
           <Divider orientation="vertical" />
           <Divider orientation="vertical" variant="dotted" />
           <Divider orientation="vertical" variant="dash" />
         </div>
 
-        <h3 style={{ marginTop: 'var(--spacing-space-16)' }}>With Text</h3>
+        <Typography variant="h3" style={{ marginTop: 'var(--spacing-space-16)' }}>
+          With Text
+        </Typography>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-16)', maxWidth: 320 }}>
           <Divider textAlign="left">Text</Divider>
           <Divider textAlign="center">Text</Divider>
@@ -445,11 +643,11 @@ export default function App() {
         </div>
       </section>
 
-      <section>
-        <h2>Tabs</h2>
+      <section style={sectionStyle}>
+        <Typography variant="h2">Tabs</Typography>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-16)' }}>
-          <div>
-            <h3>With Icon, With Dropdown</h3>
+          <div style={subCell}>
+            <Typography variant="h3">With Icon, With Dropdown</Typography>
             <Tabs
               items={[
                 { value: '1', label: 'Meet Medico', icon: EyeIcon, showDropdown: true },
@@ -458,8 +656,8 @@ export default function App() {
               ]}
             />
           </div>
-          <div>
-            <h3>With Icon, No Dropdown</h3>
+          <div style={subCell}>
+            <Typography variant="h3">With Icon, No Dropdown</Typography>
             <Tabs
               items={[
                 { value: '1', label: 'Meet Medico', icon: EyeIcon },
@@ -467,8 +665,8 @@ export default function App() {
               ]}
             />
           </div>
-          <div>
-            <h3>No Icon, No Dropdown</h3>
+          <div style={subCell}>
+            <Typography variant="h3">No Icon, No Dropdown</Typography>
             <Tabs
               items={[
                 { value: '1', label: 'Meet Medico' },
@@ -476,8 +674,8 @@ export default function App() {
               ]}
             />
           </div>
-          <div>
-            <h3>Only Icon</h3>
+          <div style={subCell}>
+            <Typography variant="h3">Only Icon</Typography>
             <Tabs
               items={[
                 { value: '1', icon: EyeIcon, ariaLabel: 'Preview' },
@@ -488,11 +686,11 @@ export default function App() {
         </div>
       </section>
 
-      <section>
-        <h2>Box Tabs</h2>
+      <section style={sectionStyle}>
+        <Typography variant="h2">Box Tabs</Typography>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-16)' }}>
-          <div>
-            <h3>With Icon, With Dropdown</h3>
+          <div style={subCell}>
+            <Typography variant="h3">With Icon, With Dropdown</Typography>
             <Tabs
               variant="box"
               items={[
@@ -502,8 +700,8 @@ export default function App() {
               ]}
             />
           </div>
-          <div>
-            <h3>No Icon, No Dropdown</h3>
+          <div style={subCell}>
+            <Typography variant="h3">No Icon, No Dropdown</Typography>
             <Tabs
               variant="box"
               items={[
@@ -512,8 +710,8 @@ export default function App() {
               ]}
             />
           </div>
-          <div>
-            <h3>Only Icon</h3>
+          <div style={subCell}>
+            <Typography variant="h3">Only Icon</Typography>
             <Tabs
               variant="box"
               items={[
@@ -525,11 +723,11 @@ export default function App() {
         </div>
       </section>
 
-      <section>
-        <h2>Segment Tabs</h2>
+      <section style={sectionStyle}>
+        <Typography variant="h2">Segment Tabs</Typography>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-16)' }}>
-          <div>
-            <h3>With Icon, With Dropdown</h3>
+          <div style={subCell}>
+            <Typography variant="h3">With Icon, With Dropdown</Typography>
             <Tabs
               variant="segment"
               items={[
@@ -539,8 +737,8 @@ export default function App() {
               ]}
             />
           </div>
-          <div>
-            <h3>No Icon, No Dropdown</h3>
+          <div style={subCell}>
+            <Typography variant="h3">No Icon, No Dropdown</Typography>
             <Tabs
               variant="segment"
               items={[
@@ -549,8 +747,8 @@ export default function App() {
               ]}
             />
           </div>
-          <div>
-            <h3>Only Icon</h3>
+          <div style={subCell}>
+            <Typography variant="h3">Only Icon</Typography>
             <Tabs
               variant="segment"
               items={[
@@ -562,11 +760,11 @@ export default function App() {
         </div>
       </section>
 
-      <section>
-        <h2>Alert Messages</h2>
+      <section style={sectionStyle}>
+        <Typography variant="h2">Alert Messages</Typography>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--spacing-space-24)' }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-16)', maxWidth: 320 }}>
-            <h3>Primary</h3>
+            <Typography variant="h3">Primary</Typography>
             <Alert type="warning">
               Warning message will appear here can be up-to two lines not more than that
             </Alert>
@@ -579,7 +777,7 @@ export default function App() {
             </Alert>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-16)', maxWidth: 320 }}>
-            <h3>Secondary</h3>
+            <Typography variant="h3">Secondary</Typography>
             <Alert type="warning" level="secondary">
               Warning message will appear here can be up-to two lines not more than that
             </Alert>
@@ -592,7 +790,7 @@ export default function App() {
             </Alert>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-16)', maxWidth: 320 }}>
-            <h3>Primary, Without Icon</h3>
+            <Typography variant="h3">Primary, Without Icon</Typography>
             <Alert type="warning" showIcon={false}>
               Warning message will appear here can be up-to two lines not more than that
             </Alert>
@@ -605,7 +803,7 @@ export default function App() {
             </Alert>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-16)', maxWidth: 320 }}>
-            <h3>Secondary, Without Icon</h3>
+            <Typography variant="h3">Secondary, Without Icon</Typography>
             <Alert type="warning" level="secondary" showIcon={false}>
               Warning message will appear here can be up-to two lines not more than that
             </Alert>
@@ -620,17 +818,17 @@ export default function App() {
         </div>
       </section>
 
-      <section>
-        <h2>Tool Tip</h2>
+      <section style={sectionStyle}>
+        <Typography variant="h2">Tool Tip</Typography>
         <div style={{ padding: 'var(--spacing-space-24)' }}>
-          <h3>Default</h3>
+          <Typography variant="h3">Default</Typography>
           <div style={{ marginBottom: 'var(--spacing-space-24)' }}>
             <Tooltip title="Title" description="A Tooltip Description">
               <Button variant="secondary">Hover me</Button>
             </Tooltip>
           </div>
 
-          <h3>Top</h3>
+          <Typography variant="h3">Top</Typography>
           <div style={{ ...row, gap: 'var(--spacing-space-40)', marginBottom: 'var(--spacing-space-40)' }}>
             <Tooltip title="Title" description="A Tooltip Description" placement="topLeft">
               <Button variant="secondary">TL</Button>
@@ -643,7 +841,7 @@ export default function App() {
             </Tooltip>
           </div>
 
-          <h3>Bottom</h3>
+          <Typography variant="h3">Bottom</Typography>
           <div style={{ ...row, gap: 'var(--spacing-space-40)', marginBottom: 'var(--spacing-space-40)' }}>
             <Tooltip title="Title" description="A Tooltip Description" placement="bottomLeft">
               <Button variant="secondary">BL</Button>
@@ -656,7 +854,7 @@ export default function App() {
             </Tooltip>
           </div>
 
-          <h3>Left</h3>
+          <Typography variant="h3">Left</Typography>
           <div style={{ ...row, gap: 'var(--spacing-space-40)', marginBottom: 'var(--spacing-space-40)' }}>
             <Tooltip title="Title" description="A Tooltip Description" placement="leftTop">
               <Button variant="secondary">LT</Button>
@@ -669,7 +867,7 @@ export default function App() {
             </Tooltip>
           </div>
 
-          <h3>Right</h3>
+          <Typography variant="h3">Right</Typography>
           <div style={{ ...row, gap: 'var(--spacing-space-40)' }}>
             <Tooltip title="Title" description="A Tooltip Description" placement="rightTop">
               <Button variant="secondary">RT</Button>
@@ -684,8 +882,8 @@ export default function App() {
         </div>
       </section>
 
-      <section>
-        <h2>Checkbox</h2>
+      <section style={sectionStyle}>
+        <Typography variant="h2">Checkbox</Typography>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-16)' }}>
           <div style={row}>
             <Checkbox label="Default" />
@@ -700,8 +898,8 @@ export default function App() {
         </div>
       </section>
 
-      <section>
-        <h2>Radio</h2>
+      <section style={sectionStyle}>
+        <Typography variant="h2">Radio</Typography>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-16)' }}>
           <div style={row}>
             <Radio name="radio-demo-1" label="Default" />
@@ -714,8 +912,8 @@ export default function App() {
         </div>
       </section>
 
-      <section>
-        <h2>Switch</h2>
+      <section style={sectionStyle}>
+        <Typography variant="h2">Switch</Typography>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-16)' }}>
           <div style={row}>
             <Switch label="Default" />
@@ -728,23 +926,23 @@ export default function App() {
         </div>
       </section>
 
-      <section>
-        <h2>App Header</h2>
+      <section style={sectionStyle}>
+        <Typography variant="h2">App Header</Typography>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-24)' }}>
-          <div>
-            <h3>Main Header</h3>
+          <div style={subCell}>
+            <Typography variant="h3">Main Header</Typography>
             <div style={{ maxWidth: 360, border: '1px solid var(--neutral-100)' }}>
               <AppHeader variant="main" onSearch={() => {}} />
             </div>
           </div>
-          <div>
-            <h3>Back Button Only</h3>
+          <div style={subCell}>
+            <Typography variant="h3">Back Button Only</Typography>
             <div style={{ maxWidth: 360, border: '1px solid var(--neutral-100)' }}>
               <AppHeader variant="back" onBack={() => {}} />
             </div>
           </div>
-          <div>
-            <h3>Back and Action</h3>
+          <div style={subCell}>
+            <Typography variant="h3">Back and Action</Typography>
             <div style={{ maxWidth: 360, border: '1px solid var(--neutral-100)' }}>
               <AppHeader
                 variant="back"
@@ -757,14 +955,14 @@ export default function App() {
               />
             </div>
           </div>
-          <div>
-            <h3>Back and Label</h3>
+          <div style={subCell}>
+            <Typography variant="h3">Back and Label</Typography>
             <div style={{ maxWidth: 360, border: '1px solid var(--neutral-100)' }}>
               <AppHeader variant="back" onBack={() => {}} label="Label" />
             </div>
           </div>
-          <div>
-            <h3>Back and Label and Supporting Text</h3>
+          <div style={subCell}>
+            <Typography variant="h3">Back and Label and Supporting Text</Typography>
             <div style={{ maxWidth: 360, border: '1px solid var(--neutral-100)' }}>
               <AppHeader
                 variant="back"
@@ -777,8 +975,8 @@ export default function App() {
         </div>
       </section>
 
-      <section>
-        <h2>App Footer</h2>
+      <section style={sectionStyle}>
+        <Typography variant="h2">App Footer</Typography>
         <div style={{ maxWidth: 360 }}>
           <AppFooter
             items={[
@@ -792,26 +990,26 @@ export default function App() {
         </div>
       </section>
 
-      <section>
-        <h2>Loader</h2>
+      <section style={sectionStyle}>
+        <Typography variant="h2">Loader</Typography>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-24)' }}>
-          <div>
-            <h3>Circle Loader</h3>
+          <div style={subCell}>
+            <Typography variant="h3">Circle Loader</Typography>
             <div style={row}>
               <Spinner size={24} />
               <Spinner size={32} />
               <Spinner size={48} />
             </div>
           </div>
-          <div>
-            <h3>Dotted Loader</h3>
+          <div style={subCell}>
+            <Typography variant="h3">Dotted Loader</Typography>
             <div style={row}>
               <DotsLoader />
               <DotsLoader size={12} />
             </div>
           </div>
-          <div>
-            <h3>Skeleton</h3>
+          <div style={subCell}>
+            <Typography variant="h3">Skeleton</Typography>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-16)', maxWidth: 280 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-space-12)' }}>
                 <Skeleton shape="circle" />
@@ -822,6 +1020,598 @@ export default function App() {
               </div>
               <Skeleton shape="rect" height={100} />
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section style={sectionStyle}>
+        <Typography variant="h2">Drawer</Typography>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-24)' }}>
+          <div style={subCell}>
+            <Typography variant="h3">Normal</Typography>
+            <div style={row}>
+              {placements.map((p) => (
+                <Button
+                  key={p.value}
+                  variant="primary"
+                  onClick={() => setDrawerNormal({ open: true, placement: p.value })}
+                >
+                  {p.label}
+                </Button>
+              ))}
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Without Close Button</Typography>
+            <div style={row}>
+              {placements.map((p) => (
+                <Button
+                  key={p.value}
+                  variant="primary"
+                  onClick={() => setDrawerNoClose({ open: true, placement: p.value })}
+                >
+                  {p.label}
+                </Button>
+              ))}
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">With Actions</Typography>
+            <div style={row}>
+              {placements.map((p) => (
+                <Button
+                  key={p.value}
+                  variant="primary"
+                  onClick={() => setDrawerActions({ open: true, placement: p.value })}
+                >
+                  {p.label}
+                </Button>
+              ))}
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Mask Variants</Typography>
+            <div style={row}>
+              <Button variant="primary" onClick={() => setDrawerMaskNoneOpen(true)}>
+                No Mask
+              </Button>
+              <Button variant="primary" onClick={() => setDrawerMaskBlurOpen(true)}>
+                Blur Mask
+              </Button>
+              <Button variant="primary" onClick={() => setDrawerMaskDimmedOpen(true)}>
+                Dimmed Mask
+              </Button>
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Two-level Drawer</Typography>
+            <div style={row}>
+              {placements.map((p) => (
+                <Button
+                  key={p.value}
+                  variant="primary"
+                  onClick={() => setDrawerLevel1({ open: true, placement: p.value })}
+                >
+                  {p.label}
+                </Button>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <Drawer
+          open={drawerNormal.open}
+          onClose={() => setDrawerNormal((s) => ({ ...s, open: false }))}
+          placement={drawerNormal.placement}
+          title="Normal Drawer"
+        >
+          Some contents...
+        </Drawer>
+
+        <Drawer
+          open={drawerNoClose.open}
+          onClose={() => setDrawerNoClose((s) => ({ ...s, open: false }))}
+          placement={drawerNoClose.placement}
+          title="Without Close Button"
+          closable={false}
+        >
+          Some contents...
+        </Drawer>
+
+        <Drawer
+          open={drawerActions.open}
+          onClose={() => setDrawerActions((s) => ({ ...s, open: false }))}
+          placement={drawerActions.placement}
+          title="With Actions"
+          onSubmit={() => setDrawerActions((s) => ({ ...s, open: false }))}
+          onCancel={() => setDrawerActions((s) => ({ ...s, open: false }))}
+        >
+          Some contents...
+        </Drawer>
+
+        <Drawer
+          open={drawerMaskNoneOpen}
+          onClose={() => setDrawerMaskNoneOpen(false)}
+          title="No Mask"
+          mask="none"
+        >
+          Some contents...
+        </Drawer>
+
+        <Drawer
+          open={drawerMaskBlurOpen}
+          onClose={() => setDrawerMaskBlurOpen(false)}
+          title="Blur Mask"
+          mask="blur"
+        >
+          Some contents...
+        </Drawer>
+
+        <Drawer
+          open={drawerMaskDimmedOpen}
+          onClose={() => setDrawerMaskDimmedOpen(false)}
+          title="Dimmed Mask"
+          mask="dimmed"
+        >
+          Some contents...
+        </Drawer>
+
+        <Drawer
+          open={drawerLevel1.open}
+          onClose={() => setDrawerLevel1((s) => ({ ...s, open: false }))}
+          placement={drawerLevel1.placement}
+          title="Multi-level Drawer"
+        >
+          <Button variant="primary" onClick={() => setDrawerLevel2Open(true)}>
+            Open Second Drawer
+          </Button>
+        </Drawer>
+
+        <Drawer
+          open={drawerLevel2Open}
+          onClose={() => setDrawerLevel2Open(false)}
+          placement={drawerLevel1.placement}
+          title="Two-level Drawer"
+        >
+          This is a two-level drawer.
+        </Drawer>
+      </section>
+
+      <section style={sectionStyle}>
+        <Typography variant="h2">Typography</Typography>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-24)' }}>
+          <div style={subCell}>
+            <Typography variant="h3">Display</Typography>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-8)' }}>
+              <Typography variant="display" weight="extrabold">
+                Display Extra Bold
+              </Typography>
+              <Typography variant="display" weight="bold">
+                Display Bold
+              </Typography>
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Heading H1</Typography>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-8)' }}>
+              <Typography variant="h1" weight="extrabold">
+                Heading H1 Extra Bold
+              </Typography>
+              <Typography variant="h1" weight="bold">
+                Heading H1 Bold
+              </Typography>
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Sub Heading H2</Typography>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-8)' }}>
+              <Typography variant="h2" weight="bold">
+                Sub Heading H2 Bold
+              </Typography>
+              <Typography variant="h2" weight="semibold">
+                Sub Heading H2 Semi Bold
+              </Typography>
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Title H3</Typography>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-8)' }}>
+              <Typography variant="h3" weight="bold">
+                Title H3 Bold
+              </Typography>
+              <Typography variant="h3" weight="semibold">
+                Title H3 Semi Bold
+              </Typography>
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Sub Title H4</Typography>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-8)' }}>
+              <Typography variant="h4" weight="bold">
+                Sub Title H4 Bold
+              </Typography>
+              <Typography variant="h4" weight="semibold">
+                Sub Title H4 Semi Bold
+              </Typography>
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Body P1</Typography>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-8)' }}>
+              <Typography variant="body" weight="semibold">
+                Body Semi Bold
+              </Typography>
+              <Typography variant="body" weight="regular">
+                Body Regular
+              </Typography>
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Label</Typography>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-8)' }}>
+              <Typography variant="labelCaps" weight="bold">
+                Label Caps Bold
+              </Typography>
+              <Typography variant="label" weight="bold">
+                Label Bold
+              </Typography>
+              <Typography variant="label" weight="medium">
+                Label Medium
+              </Typography>
+              <Typography variant="label" weight="regular">
+                Label Regular
+              </Typography>
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Caption</Typography>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-8)' }}>
+              <Typography variant="caption" weight="semibold">
+                Caption Semi Bold
+              </Typography>
+              <Typography variant="caption" weight="medium">
+                Caption Medium
+              </Typography>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section style={sectionStyle}>
+        <Typography variant="h2">Progress</Typography>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-24)' }}>
+          <div style={subCell}>
+            <Typography variant="h3">Basic Usage</Typography>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-16)', maxWidth: 360 }}>
+              <Progress percent={65} status="secondary" />
+              <Progress percent={30} status="secondary" size="small" />
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Task Status</Typography>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-16)', maxWidth: 420 }}>
+              <Progress percent={55} status="secondary" label="Task In Progress" />
+              <Progress percent={100} status="success" label="Task Completed" />
+              <Progress percent={35} status="error" label="Task Failed" />
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Progress-related Descriptions</Typography>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-16)', maxWidth: 360 }}>
+              <Progress percent={50} status="secondary" />
+              <Progress percent={55} status="secondary" info="Loading" loading />
+              <Progress percent={100} status="success" />
+              <Progress percent={40} status="error" />
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Circular Progress Bar</Typography>
+            <div style={row}>
+              <Progress type="circle" percent={68} status="secondary" />
+              <Progress type="circle" percent={100} status="success" />
+              <Progress type="circle" percent={40} status="error" />
+              <Progress type="circle" percent={68} status="secondary" size="small" />
+              <Progress type="circle" percent={100} status="success" size="small" />
+              <Progress type="circle" percent={40} status="error" size="small" />
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Content-level Progress Bar</Typography>
+            <div style={row}>
+              <Progress type="circle" size="micro" percent={40} status="secondary" loading label="In Progress" />
+              <Progress type="circle" size="micro" percent={100} status="success" label="Completed" />
+              <Progress type="circle" size="micro" percent={40} status="error" label="Exception" />
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Primary Color</Typography>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-16)', maxWidth: 360 }}>
+              <Progress percent={72} status="primary" />
+              <Progress type="circle" percent={72} status="primary" size="small" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section style={sectionStyle}>
+        <Typography variant="h2">Accordion</Typography>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-24)' }}>
+          <div style={subCell}>
+            <Typography variant="h3">Borderless (Figma Spec)</Typography>
+            <div style={{ maxWidth: 480 }}>
+              <Accordion items={faqItems} variant="borderless" defaultActiveKeys={['attend']} />
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Bordered</Typography>
+            <div style={{ maxWidth: 480 }}>
+              <Accordion items={faqItems} variant="bordered" />
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Accordion Mode (single panel open)</Typography>
+            <div style={{ maxWidth: 480 }}>
+              <Accordion items={faqItems} variant="bordered" accordion />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section style={sectionStyle}>
+        <Typography variant="h2">Navigation</Typography>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-24)' }}>
+          <div style={subCell}>
+            <Typography variant="h3">Horizontal — Logo Center</Typography>
+            <div style={{ border: '1px solid var(--neutral-100)', borderRadius: 'var(--radius-border-radius-8)' }}>
+              <div style={{ padding: 'var(--spacing-space-16)' }}>
+                <Navigation
+                  items={navHorizontalItems}
+                  mode="horizontal"
+                  activeKey="home"
+                  logo={<Logo variant="responsive" />}
+                  logoPosition="center"
+                  menuAlign="start"
+                  actions={
+                    <>
+                      <Button variant="secondary">Register</Button>
+                      <Button variant="primary">Login</Button>
+                    </>
+                  }
+                />
+              </div>
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Horizontal — Logo Left, Menu Center</Typography>
+            <div style={{ border: '1px solid var(--neutral-100)', borderRadius: 'var(--radius-border-radius-8)' }}>
+              <div style={{ padding: 'var(--spacing-space-16)' }}>
+                <Navigation
+                  items={navHorizontalItems}
+                  mode="horizontal"
+                  activeKey="home"
+                  logo={<Logo variant="responsive" />}
+                  logoPosition="left"
+                  menuAlign="center"
+                  actions={
+                    <>
+                      <Button variant="secondary">Register</Button>
+                      <Button variant="primary">Login</Button>
+                    </>
+                  }
+                />
+              </div>
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Horizontal — Logo Left, Menu Right, With Icons</Typography>
+            <div style={{ border: '1px solid var(--neutral-100)', borderRadius: 'var(--radius-border-radius-8)' }}>
+              <div style={{ padding: 'var(--spacing-space-16)' }}>
+                <Navigation
+                  items={navHorizontalIconItems}
+                  mode="horizontal"
+                  activeKey="home"
+                  logo={<Logo variant="responsive" />}
+                  logoPosition="left"
+                  menuAlign="end"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Horizontal — 3 Levels (Professionals → Doctors → Specialists)</Typography>
+            <div style={{ border: '1px solid var(--neutral-100)', borderRadius: 'var(--radius-border-radius-8)' }}>
+              <div style={{ padding: 'var(--spacing-space-16)' }}>
+                <Navigation
+                  items={navHorizontalThreeLevelItems}
+                  mode="horizontal"
+                  activeKey="home-3l"
+                  logo={<Logo variant="responsive" />}
+                  logoPosition="left"
+                  menuAlign="center"
+                  actions={
+                    <>
+                      <Button variant="secondary">Register</Button>
+                      <Button variant="primary">Login</Button>
+                    </>
+                  }
+                />
+              </div>
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Vertical — Default (accordion submenu, nested levels)</Typography>
+            <div
+              style={{
+                width: 280,
+                border: '1px solid var(--neutral-100)',
+                borderRadius: 'var(--radius-border-radius-8)',
+                padding: 'var(--spacing-space-8)',
+              }}
+            >
+              <Navigation items={navVerticalItems} mode="vertical" defaultOpenKeys={['nav-two']} accordion />
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Vertical — Collapsible (icon-only rail, hover tooltip)</Typography>
+            <div
+              style={{
+                width: 280,
+                border: '1px solid var(--neutral-100)',
+                borderRadius: 'var(--radius-border-radius-8)',
+                padding: 'var(--spacing-space-8)',
+              }}
+            >
+              <Navigation items={navVerticalItems} mode="vertical" collapsible />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section style={sectionStyle}>
+        <Typography variant="h2">Breadcrumb</Typography>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-24)' }}>
+          <div style={subCell}>
+            <Typography variant="h3">Breadcrumb States</Typography>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-16)' }}>
+              <div>
+                <Typography variant="caption" weight="semibold" color="var(--neutral-500)">
+                  Previous Page
+                </Typography>
+                <Breadcrumb items={[{ key: 'home', label: 'Home', href: '#' }]} />
+              </div>
+              <div>
+                <Typography variant="caption" weight="semibold" color="var(--neutral-500)">
+                  Active Page (developer chooses primary or neutral)
+                </Typography>
+                <div style={row}>
+                  <Breadcrumb items={[{ key: 'home', label: 'Home' }]} activeColor="primary" />
+                  <Breadcrumb items={[{ key: 'home', label: 'Home' }]} activeColor="neutral" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Example</Typography>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-12)' }}>
+              <Breadcrumb items={breadcrumbItems} activeColor="primary" />
+              <Breadcrumb items={breadcrumbItems} activeColor="neutral" />
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">In Responsive</Typography>
+            <Breadcrumb items={breadcrumbItems} maxItems={2} />
+          </div>
+        </div>
+      </section>
+
+      <section style={sectionStyle}>
+        <Typography variant="h2">Pagination</Typography>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-24)' }}>
+          <div style={subCell}>
+            <Typography variant="h3">Pagination Normal</Typography>
+            <Pagination total={102} defaultCurrent={1} boundaryCount={3} showTotal pageSize={50} totalItems={109} />
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Only Pagination</Typography>
+            <Pagination total={102} defaultCurrent={1} boundaryCount={3} />
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Pagination With Button + Icon</Typography>
+            <Pagination total={102} defaultCurrent={2} boundaryCount={3} prevNext="button" />
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Pagination With only icon</Typography>
+            <Pagination total={102} defaultCurrent={2} boundaryCount={3} prevNext="icon" />
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Responsive Pagination</Typography>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-16)' }}>
+              <Pagination total={102} defaultCurrent={1} boundaryCount={1} siblingCount={0} />
+              <Pagination total={102} defaultCurrent={1} boundaryCount={1} siblingCount={0} prevNext="icon" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section style={sectionStyle}>
+        <Typography variant="h2">Steps</Typography>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-24)' }}>
+          <div style={subCell}>
+            <Typography variant="h3">Horizontal</Typography>
+            <Steps items={stepsItems} current={1} />
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Vertical</Typography>
+            <div style={{ maxWidth: 320 }}>
+              <Steps items={stepsItems} current={1} direction="vertical" />
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Dot Variant</Typography>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-24)' }}>
+              <Steps items={stepsItems} current={1} variant="dot" />
+              <div style={{ maxWidth: 320 }}>
+                <Steps items={stepsItems} current={1} variant="dot" direction="vertical" />
+              </div>
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">With Extra Content</Typography>
+            <Steps items={stepsWithExtraItems} current={1} />
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">With Custom Icons</Typography>
+            <Steps items={stepsIconItems} current={1} />
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Clickable</Typography>
+            <Steps items={stepsItems} current={stepsCurrent} onChange={setStepsCurrent} />
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Error Status</Typography>
+            <Steps
+              items={[
+                { key: 'a', title: 'Step 1', description: 'This is a content.' },
+                { key: 'b', title: 'Step 2', description: 'This is a content.', status: 'error' },
+                { key: 'c', title: 'Step 3', description: 'This is a content.' },
+              ]}
+              current={1}
+            />
           </div>
         </div>
       </section>

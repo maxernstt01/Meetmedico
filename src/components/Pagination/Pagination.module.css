@@ -1,0 +1,118 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-space-24);
+  flex-wrap: wrap;
+}
+
+.total {
+  flex-shrink: 0;
+  font-family: var(--font-family-type-family-primary), system-ui, sans-serif;
+  font-weight: var(--font-weight-type-weight-bold-700);
+  font-size: var(--font-size-label);
+  color: var(--neutral-500);
+  white-space: nowrap;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-space-8);
+  flex-wrap: wrap;
+}
+
+.number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  border: 1px solid var(--neutral-300);
+  border-radius: var(--radius-border-radius-8);
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--font-family-type-family-primary), system-ui, sans-serif;
+  font-weight: var(--font-weight-type-weight-bold-700);
+  font-size: var(--font-size-label);
+  color: var(--neutral-500);
+}
+
+.number:hover {
+  border-color: var(--primary-600);
+}
+
+.numberActive {
+  border-color: var(--primary-600);
+  color: var(--primary-600);
+}
+
+.ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  border: 1px solid var(--neutral-300);
+  border-radius: var(--radius-border-radius-8);
+  font-family: var(--font-family-type-family-primary), system-ui, sans-serif;
+  font-weight: var(--font-weight-type-weight-bold-700);
+  font-size: var(--font-size-label);
+  color: var(--neutral-500);
+}
+
+.textButton {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-space-4);
+  border: none;
+  background: transparent;
+  padding: var(--spacing-space-4) 0;
+  cursor: pointer;
+  font-family: var(--font-family-type-family-primary), system-ui, sans-serif;
+  font-weight: var(--font-weight-type-weight-bold-700);
+  font-size: var(--font-size-label);
+  color: var(--primary-600);
+}
+
+.textButton .buttonIcon path {
+  stroke: var(--primary-600);
+}
+
+.textButtonDisabled {
+  cursor: not-allowed;
+  color: var(--neutral-500);
+}
+
+.textButtonDisabled .buttonIcon path {
+  stroke: var(--neutral-500);
+}
+
+.iconButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  padding: var(--spacing-space-4);
+  cursor: pointer;
+}
+
+.iconButton .buttonIcon path {
+  stroke: var(--neutral-900);
+}
+
+.iconButton:disabled {
+  cursor: not-allowed;
+}
+
+.iconButton:disabled .buttonIcon path {
+  stroke: var(--neutral-300);
+}
+
+.buttonIcon {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+}

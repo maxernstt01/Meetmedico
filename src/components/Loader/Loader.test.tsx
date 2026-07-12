@@ -16,6 +16,11 @@ describe('Spinner', () => {
     expect(svg).toHaveAttribute('width', '48');
     expect(svg).toHaveAttribute('height', '48');
   });
+
+  it('applies the requested strokeWidth', () => {
+    const { container } = render(<Spinner strokeWidth={8} />);
+    expect(container.querySelector('circle')).toHaveAttribute('stroke-width', '8');
+  });
 });
 
 describe('DotsLoader', () => {

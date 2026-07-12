@@ -3,11 +3,17 @@ import styles from './Spinner.module.css';
 
 export interface SpinnerProps {
   size?: number;
+  strokeWidth?: number;
   className?: string;
   'aria-label'?: string;
 }
 
-export function Spinner({ size = 32, className, 'aria-label': ariaLabel = 'Loading' }: SpinnerProps) {
+export function Spinner({
+  size = 32,
+  strokeWidth = 4,
+  className,
+  'aria-label': ariaLabel = 'Loading',
+}: SpinnerProps) {
   const gradientId = useId();
 
   return (
@@ -31,7 +37,7 @@ export function Spinner({ size = 32, className, 'aria-label': ariaLabel = 'Loadi
         r="20"
         fill="none"
         stroke={`url(#${gradientId})`}
-        strokeWidth="4"
+        strokeWidth={strokeWidth}
         strokeLinecap="round"
         strokeDasharray="90 125"
       />
