@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from 'react';
 import { createPortal } from 'react-dom';
 import CancelGlyph from '@/assets/icons/Primary Button/Cancel01Icon.svg?react';
 import { Button } from '../Button';
@@ -10,12 +10,16 @@ const GAP = 12;
 const SPOTLIGHT_PADDING = 4;
 const VIEWPORT_MARGIN = 8;
 
+function clampNumber(value: number, min: number, max: number): number {
+  return Math.min(Math.max(value, min), Math.max(min, max));
+}
+
 function clampToViewport(pos: { top: number; left: number }, card: CardSize): { top: number; left: number } {
   const maxLeft = window.innerWidth - card.width - VIEWPORT_MARGIN;
   const maxTop = window.innerHeight - card.height - VIEWPORT_MARGIN;
   return {
-    left: Math.min(Math.max(pos.left, VIEWPORT_MARGIN), Math.max(maxLeft, VIEWPORT_MARGIN)),
-    top: Math.min(Math.max(pos.top, VIEWPORT_MARGIN), Math.max(maxTop, VIEWPORT_MARGIN)),
+    left: clampNumber(pos.left, VIEWPORT_MARGIN, Math.max(maxLeft, VIEWPORT_MARGIN)),
+    top: clampNumber(pos.top, VIEWPORT_MARGIN, Math.max(maxTop, VIEWPORT_MARGIN)),
   };
 }
 
@@ -108,6 +112,7 @@ export function Tour({
   const cardRef = useRef<HTMLDivElement>(null);
   const [targetRect, setTargetRect] = useState<DOMRect | null>(null);
   const [cardPos, setCardPos] = useState<{ top: number; left: number } | null>(null);
+  const [arrowOffset, setArrowOffset] = useState<number | null>(null);
 
   const resolvedMask = step?.mask ?? mask;
   const resolvedType = step?.type ?? type;
@@ -165,7 +170,21 @@ export function Tour({
     if (!open || !cardRef.current) return;
     const cardRect = cardRef.current.getBoundingClientRect();
     const rawPosition = computeCardPosition(targetRect, placement, cardRect);
-    setCardPos(clampToViewport(rawPosition, cardRect));
+    const clamped = clampToViewport(rawPosition, cardRect);
+    setCardPos(clamped);
+
+    if (targetRect && placement !== 'center') {
+      const isHorizontalArrow = placement.startsWith('top') || placement.startsWith('bottom');
+      if (isHorizontalArrow) {
+        const targetCenterX = targetRect.left + targetRect.width / 2;
+        setArrowOffset(clampNumber(targetCenterX - clamped.left, 12, cardRect.width - 12));
+      } else {
+        const targetCenterY = targetRect.top + targetRect.height / 2;
+        setArrowOffset(clampNumber(targetCenterY - clamped.top, 12, cardRect.height - 12));
+      }
+    } else {
+      setArrowOffset(null);
+    }
   }, [open, targetRect, placement, step]);
 
   useEffect(() => {
@@ -238,7 +257,12 @@ export function Tour({
         className={[styles.card, styles[resolvedType], targetRect && styles[arrowGroup(placement)], className]
           .filter(Boolean)
           .join(' ')}
-        style={cardPos ? { top: cardPos.top, left: cardPos.left, opacity: 1 } : { top: 0, left: 0, opacity: 0 }}
+        style={
+          {
+            ...(cardPos ? { top: cardPos.top, left: cardPos.left, opacity: 1 } : { top: 0, left: 0, opacity: 0 }),
+            ...(arrowOffset !== null ? { '--arrow-offset': `${arrowOffset}px` } : {}),
+          } as CSSProperties
+        }
         role="dialog"
         aria-modal="true"
       >

@@ -49,6 +49,8 @@
 }
 
 .title {
+  min-width: 0;
+  flex: 1;
   color: var(--neutral-900);
 }
 
@@ -130,10 +132,12 @@
 }
 
 .dot {
+  flex-shrink: 0;
   width: 6px;
   height: 6px;
-  border-radius: 50%;
+  border-radius: 3px;
   background-color: var(--neutral-300);
+  transition: width var(--duration-fast) ease;
 }
 
 .dotActive {
@@ -166,24 +170,24 @@
 
 .arrowBottom::before {
   bottom: -5px;
-  left: 50%;
+  left: var(--arrow-offset, 50%);
   margin-left: -5px;
 }
 
 .arrowTop::before {
   top: -5px;
-  left: 50%;
+  left: var(--arrow-offset, 50%);
   margin-left: -5px;
 }
 
 .arrowLeft::before {
   left: -5px;
-  top: 50%;
+  top: var(--arrow-offset, 50%);
   margin-top: -5px;
 }
 
 .arrowRight::before {
   right: -5px;
-  top: 50%;
+  top: var(--arrow-offset, 50%);
   margin-top: -5px;
 }
