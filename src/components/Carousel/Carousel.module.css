@@ -1,0 +1,145 @@
+.carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-border-radius-8);
+}
+
+.viewport {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.track {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform var(--duration-slow) ease;
+}
+
+.slide {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+}
+
+/* ---------- Arrows ---------- */
+
+.arrow {
+  position: absolute;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background-color: var(--neutral-600);
+  cursor: pointer;
+  transition: opacity var(--duration-fast) ease;
+}
+
+.arrow:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.arrowPrev {
+  top: 50%;
+  left: var(--spacing-space-12);
+  transform: translateY(-50%);
+}
+
+.arrowNext {
+  top: 50%;
+  right: var(--spacing-space-12);
+  transform: translateY(-50%);
+}
+
+.arrowTop {
+  top: var(--spacing-space-12);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.arrowBottom {
+  bottom: var(--spacing-space-12);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.arrowIcon {
+  width: 16px;
+  height: 16px;
+}
+
+.arrowIconRotated {
+  transform: rotate(90deg);
+}
+
+.arrowIcon path {
+  stroke: var(--background-button-tex-and-icon-light);
+}
+
+/* ---------- Dots ---------- */
+
+.dots {
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-space-8);
+}
+
+.dots.top {
+  top: var(--spacing-space-12);
+  left: 50%;
+  transform: translateX(-50%);
+  flex-direction: row;
+}
+
+.dots.bottom {
+  bottom: var(--spacing-space-12);
+  left: 50%;
+  transform: translateX(-50%);
+  flex-direction: row;
+}
+
+.dots.left {
+  left: var(--spacing-space-12);
+  top: 50%;
+  transform: translateY(-50%);
+  flex-direction: column;
+}
+
+.dots.right {
+  right: var(--spacing-space-12);
+  top: 50%;
+  transform: translateY(-50%);
+  flex-direction: column;
+}
+
+.dot {
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  border: none;
+  border-radius: var(--radius-border-radius-8);
+  background-color: var(--white-500);
+  cursor: pointer;
+  padding: 0;
+  transition: width var(--duration-fast) ease, height var(--duration-fast) ease,
+    background-color var(--duration-fast) ease;
+}
+
+.dots:not(.dotsVertical) .dot.dotActive {
+  width: 24px;
+  background-color: var(--background-button-tex-and-icon-light);
+}
+
+.dotsVertical .dot.dotActive {
+  height: 24px;
+  background-color: var(--background-button-tex-and-icon-light);
+}

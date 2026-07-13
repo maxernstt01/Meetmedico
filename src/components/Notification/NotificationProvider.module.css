@@ -1,0 +1,53 @@
+.container {
+  position: fixed;
+  z-index: var(--z-index-tooltip);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-space-12);
+  padding: var(--spacing-space-16);
+  pointer-events: none;
+}
+
+.container > * {
+  pointer-events: auto;
+}
+
+.top {
+  top: 0;
+  left: 50%;
+  align-items: center;
+  flex-direction: column-reverse;
+  transform: translateX(-50%);
+}
+
+.bottom {
+  bottom: 0;
+  left: 50%;
+  align-items: center;
+  flex-direction: column;
+  transform: translateX(-50%);
+}
+
+.topLeft {
+  top: 0;
+  left: 0;
+  flex-direction: column-reverse;
+}
+
+.topRight {
+  top: 0;
+  right: 0;
+  flex-direction: column-reverse;
+}
+
+.bottomLeft {
+  bottom: 0;
+  left: 0;
+  flex-direction: column;
+}
+
+.bottomRight {
+  bottom: 0;
+  right: 0;
+  flex-direction: column;
+}

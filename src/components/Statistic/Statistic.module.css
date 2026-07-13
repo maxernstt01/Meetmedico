@@ -1,0 +1,117 @@
+.statistic {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-space-4);
+}
+
+.statistic.withIcon {
+  flex-direction: row;
+  align-items: center;
+  gap: var(--spacing-space-12);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-space-4);
+}
+
+.iconBadge {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+}
+
+.iconGlyph {
+  width: 22px;
+  height: 22px;
+}
+
+.iconBadge.primary {
+  background-color: var(--primary-100);
+}
+
+.iconBadge.primary .iconGlyph path {
+  stroke: var(--primary-600);
+}
+
+.iconBadge.secondary {
+  background-color: var(--secondary-100);
+}
+
+.iconBadge.secondary .iconGlyph path {
+  stroke: var(--secondary-600);
+}
+
+.iconBadge.success {
+  background-color: var(--sucess-100);
+}
+
+.iconBadge.success .iconGlyph path {
+  stroke: var(--sucess-600);
+}
+
+.iconBadge.warning {
+  background-color: var(--warning-100);
+}
+
+.iconBadge.warning .iconGlyph path {
+  stroke: var(--warning-600);
+}
+
+.iconBadge.error {
+  background-color: var(--error-100);
+}
+
+.iconBadge.error .iconGlyph path {
+  stroke: var(--error-600);
+}
+
+.iconBadge.neutral {
+  background-color: var(--neutral-100);
+}
+
+.iconBadge.neutral .iconGlyph path {
+  stroke: var(--neutral-600);
+}
+
+.valueRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--spacing-space-4);
+}
+
+.value {
+  font-variant-numeric: tabular-nums;
+}
+
+.trendIcon {
+  align-self: center;
+  width: 16px;
+  height: 16px;
+}
+
+.trendIcon.up path {
+  stroke: var(--sucess-600);
+}
+
+.trendIcon.down path {
+  stroke: var(--error-600);
+}
+
+.prefix {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-space-4);
+}
+
+.suffix {
+  font-family: var(--font-family-type-family-primary), system-ui, sans-serif;
+  font-size: var(--font-size-body-p1);
+  font-weight: var(--font-weight-type-weight-medium-500);
+}

@@ -1,0 +1,189 @@
+.slider {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-space-12);
+  width: 100%;
+}
+
+.slider.vertical {
+  flex-direction: column;
+  width: fit-content;
+  height: 200px;
+  padding-bottom: var(--spacing-space-16);
+}
+
+.icon {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+}
+
+.icon path {
+  stroke: var(--neutral-500);
+}
+
+.track {
+  position: relative;
+  flex: 1;
+  touch-action: none;
+}
+
+.horizontal .track {
+  width: 100%;
+  min-height: 24px;
+  padding: var(--spacing-space-24) 0 var(--spacing-space-8);
+}
+
+.vertical .track {
+  height: 100%;
+  min-width: 24px;
+  display: flex;
+  justify-content: center;
+}
+
+.rail {
+  position: absolute;
+  background-color: var(--neutral-100);
+  border-radius: var(--radius-border-radius-8);
+}
+
+.horizontal .rail {
+  top: var(--spacing-space-24);
+  left: 0;
+  right: 0;
+  height: 4px;
+}
+
+.vertical .rail {
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  transform: translateX(-50%);
+}
+
+.bar {
+  position: absolute;
+  background-color: var(--primary-600);
+  border-radius: var(--radius-border-radius-8);
+}
+
+.horizontal .bar {
+  top: var(--spacing-space-24);
+  height: 4px;
+}
+
+.vertical .bar {
+  left: 50%;
+  width: 4px;
+  transform: translateX(-50%);
+}
+
+.handle {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: var(--background-background);
+  border: 2px solid var(--primary-600);
+  cursor: grab;
+  touch-action: none;
+  z-index: 1;
+}
+
+.horizontal .handle {
+  top: calc(var(--spacing-space-24) + 2px);
+  transform: translate(-50%, -50%);
+}
+
+.vertical .handle {
+  left: 50%;
+  transform: translate(-50%, 50%);
+}
+
+.handle:active {
+  cursor: grabbing;
+}
+
+.handle:focus-visible {
+  box-shadow: 0 0 0 4px var(--primary-100);
+  outline: none;
+}
+
+.disabled .handle {
+  border-color: var(--neutral-300);
+  cursor: not-allowed;
+}
+
+.disabled .bar {
+  background-color: var(--neutral-300);
+}
+
+.disabled .track {
+  cursor: not-allowed;
+}
+
+.markDot {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: var(--neutral-300);
+}
+
+.horizontal .markDot {
+  top: calc(var(--spacing-space-24) + 2px);
+  transform: translate(-50%, -50%);
+}
+
+.vertical .markDot {
+  left: 50%;
+  transform: translate(-50%, 50%);
+}
+
+.markLabel {
+  position: absolute;
+  font-family: var(--font-family-type-family-primary), system-ui, sans-serif;
+  font-weight: var(--font-weight-type-weight-medium-500);
+  font-size: var(--font-size-caption);
+  color: var(--neutral-500);
+  white-space: nowrap;
+}
+
+.horizontal .markLabel {
+  top: calc(var(--spacing-space-24) + var(--spacing-space-12));
+  transform: translateX(-50%);
+}
+
+.vertical .markLabel {
+  left: calc(50% + var(--spacing-space-12));
+  transform: translateY(50%);
+}
+
+.tooltip {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-space-4) var(--spacing-space-8);
+  border-radius: var(--radius-border-radius-8);
+  background-color: var(--neutral-900);
+  font-family: var(--font-family-type-family-primary), system-ui, sans-serif;
+  font-weight: var(--font-weight-type-weight-medium-500);
+  font-size: var(--font-size-caption);
+  color: var(--white-900);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.horizontal .tooltip {
+  bottom: calc(100% + var(--spacing-space-8));
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.vertical .tooltip {
+  left: calc(100% + var(--spacing-space-8));
+  top: 50%;
+  transform: translateY(-50%);
+}

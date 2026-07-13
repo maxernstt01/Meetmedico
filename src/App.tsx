@@ -9,6 +9,7 @@ import CalendarSetting02Icon from '@/assets/icons/Primary Button/CalendarSetting
 import Settings01Icon from '@/assets/icons/Primary Button/Settings01Icon.svg?react';
 import UserIcon from '@/assets/icons/Primary Button/UserIcon.svg?react';
 import CheckmarkCircle02Icon from '@/assets/icons/Primary Button/CheckmarkCircle02Icon.svg?react';
+import StarIcon from '@/assets/icons/Primary Button/StarIcon.svg?react';
 import type { DrawerPlacement, NavigationItem } from './components';
 import {
   Accordion,
@@ -47,6 +48,12 @@ import {
   Breadcrumb,
   Pagination,
   Steps,
+  Rate,
+  Header,
+  Slider,
+  Carousel,
+  Modal,
+  Statistic,
 } from './components';
 
 const dropdownOptions = Array.from({ length: 7 }, (_, i) => ({
@@ -213,6 +220,26 @@ const stepsIconItems = [
   { key: 'done', title: 'Done', icon: CheckmarkCircle02Icon },
 ];
 
+const carouselSlideStyle: CSSProperties = {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  height: '100%',
+  backgroundColor: 'var(--secondary-600)',
+  color: 'var(--white-900)',
+  fontFamily: 'var(--font-family-type-family-primary)',
+  fontSize: 24,
+  fontWeight: 700,
+};
+
+function carouselSlides(count = 4) {
+  return Array.from({ length: count }, (_, i) => (
+    <div key={i} style={carouselSlideStyle}>
+      {i + 1}
+    </div>
+  ));
+}
+
 const sectionStyle: CSSProperties = {
   display: 'flex',
   flexDirection: 'column',
@@ -268,7 +295,23 @@ export default function App() {
     placement: 'right',
   });
   const [drawerLevel2Open, setDrawerLevel2Open] = useState(false);
+  const [modalBasicOpen, setModalBasicOpen] = useState(false);
+  const [modalNoCloseOpen, setModalNoCloseOpen] = useState(false);
+  const [modalCustomFooterOpen, setModalCustomFooterOpen] = useState(false);
+  const [modalNoFooterOpen, setModalNoFooterOpen] = useState(false);
+  const [modalMaskNoneOpen, setModalMaskNoneOpen] = useState(false);
+  const [modalMaskBlurOpen, setModalMaskBlurOpen] = useState(false);
+  const [modalMaskDimmedOpen, setModalMaskDimmedOpen] = useState(false);
+  const [modalTopAlignedOpen, setModalTopAlignedOpen] = useState(false);
+  const [modalConfirmOpen, setModalConfirmOpen] = useState(false);
+  const [modalInfoOpen, setModalInfoOpen] = useState(false);
+  const [modalSuccessOpen, setModalSuccessOpen] = useState(false);
+  const [modalWarningOpen, setModalWarningOpen] = useState(false);
+  const [modalErrorOpen, setModalErrorOpen] = useState(false);
   const [stepsCurrent, setStepsCurrent] = useState(0);
+  const [rateValue, setRateValue] = useState(4);
+  const [sliderValue, setSliderValue] = useState(40);
+  const [sliderRangeValue, setSliderRangeValue] = useState<[number, number]>([20, 60]);
 
   const placements: { value: DrawerPlacement; label: string }[] = [
     { value: 'top', label: 'Top' },
@@ -1612,6 +1655,724 @@ export default function App() {
               ]}
               current={1}
             />
+          </div>
+        </div>
+      </section>
+
+      <section style={sectionStyle}>
+        <Typography variant="h2">Rate</Typography>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-24)' }}>
+          <div style={subCell}>
+            <Typography variant="h3">Option 1 (Outline)</Typography>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-8)' }}>
+              <div style={row}>
+                <Rate variant="outline" defaultValue={0} />
+                <Typography variant="label" weight="medium">
+                  Normal
+                </Typography>
+              </div>
+              <div style={row}>
+                <Rate variant="outline" defaultValue={4} />
+                <Typography variant="label" weight="medium">
+                  With Rating
+                </Typography>
+              </div>
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Option 2 (Filled)</Typography>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-8)' }}>
+              <div style={row}>
+                <Rate variant="filled" defaultValue={0} />
+                <Typography variant="label" weight="medium">
+                  Normal
+                </Typography>
+              </div>
+              <div style={row}>
+                <Rate variant="filled" defaultValue={3} />
+                <Typography variant="label" weight="medium">
+                  With Rating
+                </Typography>
+              </div>
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Sizes (16 / 20 / 26)</Typography>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-12)' }}>
+              <Rate size={16} defaultValue={3} />
+              <Rate size={20} defaultValue={3} />
+              <Rate size={26} defaultValue={3} />
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Interactive (Clickable)</Typography>
+            <div style={row}>
+              <Rate value={rateValue} onChange={setRateValue} />
+              <Typography variant="label" color="var(--neutral-500)">
+                {rateValue} / 5
+              </Typography>
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Warning Badge Rate Component</Typography>
+            <Rate variant="badge" value={3.6} />
+          </div>
+        </div>
+      </section>
+
+      <section style={sectionStyle}>
+        <Typography variant="h2">Header</Typography>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-24)' }}>
+          <div style={subCell}>
+            <Typography variant="h3">Title Type 1 — Progress status</Typography>
+            <Header
+              title="Complete your profile"
+              titleVariant="label"
+              description="20% Completed"
+              descriptionVariant="caption"
+              descriptionWeight="semibold"
+              descriptionColor="var(--warning-600)"
+            />
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Title Type 2 — Tags + title + meta row</Typography>
+            <div style={{ maxWidth: 328 }}>
+              <Header
+                eyebrowTags={[
+                  { key: 'category', label: 'Category' },
+                  { key: 'tag', label: 'Tag' },
+                  { key: 'type', label: 'Type' },
+                ]}
+                title="FREE WORKSHOP - Strategies to Learn Medical Spanish That Fit Your Schedule"
+                titleVariant="label"
+                meta={{ left: 'Pune, Maharashtra', right: 'Sep 16, 2026' }}
+              />
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Title Type 3 — Centered profile with tags below</Typography>
+            <div style={{ maxWidth: 328 }}>
+              <Header
+                align="center"
+                title="Dr. Thangavelu. S"
+                description={
+                  <>
+                    MBBS,DCH,MD,DNB,MRCP(UK)
+                    <br />
+                    Mumbai, India
+                  </>
+                }
+                descriptionVariant="body"
+                belowTags={[
+                  { key: 'en', label: 'English' },
+                  { key: 'kn', label: 'Kannada' },
+                  { key: 'hi', label: 'Hindi' },
+                ]}
+              />
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Title Type 4 — Page title (H1)</Typography>
+            <Header
+              title="Account Rejected"
+              titleVariant="h1"
+              description="Your profile has been carefully reviewed by our team and was rejected due to a mismatch"
+            />
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Title Type 10 — Centered name + location</Typography>
+            <Header
+              align="center"
+              title="Mr. Chinmay"
+              description="Mumbai, India"
+              descriptionVariant="body"
+              titleVariant="h2"
+            />
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Title Type 11 — FAQ style</Typography>
+            <div style={{ maxWidth: 296 }}>
+              <Header
+                title="Who should attend this workshop?"
+                titleVariant="label"
+                titleWeight="medium"
+                description="This workshop is ideal for healthcare professionals, medical students, nursing students, interpreters, and anyone interested in learning Medical Spanish."
+                descriptionVariant="caption"
+                descriptionColor="var(--neutral-500)"
+              />
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Title Type 12 — Greeting with highlight</Typography>
+            <Header
+              title={
+                <>
+                  Morning, <span style={{ color: 'var(--primary-600)' }}>AIIMS</span>
+                </>
+              }
+              titleVariant="h1"
+              description="Manage your Hospital profile and find upcoming health events in one place."
+            />
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Title Type 13 — Hero with highlight</Typography>
+            <Header
+              eyebrowTags={[{ key: 'verified', label: 'Certified & Verified', tone: 'secondary' }]}
+              title={
+                <>
+                  Discover Trusted <span style={{ color: 'var(--primary-600)' }}>Health Services </span>Near You
+                </>
+              }
+              titleVariant="display"
+              description="Find verified doctors, top-tier medical centers, and book seamless online appointments tailored to your exact needs."
+            />
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Title Type 14 — Section title</Typography>
+            <div style={{ maxWidth: 252 }}>
+              <Header
+                title="List Health Services"
+                titleVariant="h3"
+                description="List your hospital, pharmacy, or laboratory to reach more patients and grow your visibility."
+                descriptionColor="var(--neutral-500)"
+              />
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Title Type 15 — About with Read More</Typography>
+            <div style={{ maxWidth: 780 }}>
+              <Header
+                title="About Dr. Prakash D Bhavle"
+                titleVariant="h4"
+                titleWeight="semibold"
+                description="Dr. Shyam Bhairi is a skilled Orthopedic Surgeon specializing in joint replacement, robotic-assisted joint surgeries, sports medicine, and advanced trauma management. He completed his postgraduate training in Orthopedics at M.R. Medical College, Gulbarga, followed by a Senior Residency at the historic King Edward Memorial (K.E.M.) Hospital, Mumbai."
+                descriptionVariant="body"
+                readMore={{ onClick: () => {} }}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section style={sectionStyle}>
+        <Typography variant="h2">Slider</Typography>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-24)' }}>
+          <div style={subCell}>
+            <Typography variant="h3">Basic (Single Thumb)</Typography>
+            <div style={{ maxWidth: 400 }}>
+              <Slider value={sliderValue} onChange={(v) => setSliderValue(v as number)} />
+              <Typography variant="caption" color="var(--neutral-500)">
+                Value: {sliderValue}
+              </Typography>
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Range (Dual Thumb)</Typography>
+            <div style={{ maxWidth: 400 }}>
+              <Slider
+                range
+                value={sliderRangeValue}
+                onChange={(v) => setSliderRangeValue(v as [number, number])}
+              />
+              <Typography variant="caption" color="var(--neutral-500)">
+                Range: {sliderRangeValue[0]} - {sliderRangeValue[1]}
+              </Typography>
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Disabled</Typography>
+            <div style={{ maxWidth: 400 }}>
+              <Slider defaultValue={40} disabled />
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">With Marks &amp; step=null</Typography>
+            <div style={{ maxWidth: 400 }}>
+              <Slider
+                min={0}
+                max={100}
+                step={null}
+                defaultValue={26}
+                marks={[
+                  { value: 0, label: '0°C' },
+                  { value: 26, label: '26°C' },
+                  { value: 37, label: '37°C' },
+                  { value: 100, label: '100°C' },
+                ]}
+              />
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Not Included (position only)</Typography>
+            <div style={{ maxWidth: 400 }}>
+              <Slider defaultValue={50} included={false} />
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Reversed</Typography>
+            <div style={{ maxWidth: 400 }}>
+              <Slider defaultValue={30} reverse />
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Custom Tooltip Formatter</Typography>
+            <div style={{ maxWidth: 400 }}>
+              <Slider defaultValue={50} tooltipFormatter={(v) => `${v}%`} />
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Vertical</Typography>
+            <div style={row}>
+              <Slider direction="vertical" defaultValue={40} />
+              <Slider direction="vertical" range defaultValue={[20, 70]} />
+              <Slider
+                direction="vertical"
+                min={0}
+                max={100}
+                step={null}
+                defaultValue={26}
+                marks={[
+                  { value: 0, label: '0°C' },
+                  { value: 26, label: '26°C' },
+                  { value: 37, label: '37°C' },
+                  { value: 100, label: '100°C' },
+                ]}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section style={sectionStyle}>
+        <Typography variant="h2">Carousel</Typography>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-24)' }}>
+          <div style={subCell}>
+            <Typography variant="h3">1. Left &amp; Right Icon Only</Typography>
+            <div style={{ maxWidth: 480 }}>
+              <Carousel showArrows showDots={false}>
+                {carouselSlides()}
+              </Carousel>
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">2. Dot Only — Top / Bottom / Start / End</Typography>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-16)' }}>
+              <div style={{ maxWidth: 480 }}>
+                <Typography variant="caption" color="var(--neutral-500)">
+                  Top
+                </Typography>
+                <Carousel showArrows={false} showDots dotPosition="top">
+                  {carouselSlides()}
+                </Carousel>
+              </div>
+              <div style={{ maxWidth: 480 }}>
+                <Typography variant="caption" color="var(--neutral-500)">
+                  Bottom
+                </Typography>
+                <Carousel showArrows={false} showDots dotPosition="bottom">
+                  {carouselSlides()}
+                </Carousel>
+              </div>
+              <div style={{ maxWidth: 480 }}>
+                <Typography variant="caption" color="var(--neutral-500)">
+                  Start (Left)
+                </Typography>
+                <Carousel showArrows={false} showDots dotPosition="left">
+                  {carouselSlides()}
+                </Carousel>
+              </div>
+              <div style={{ maxWidth: 480 }}>
+                <Typography variant="caption" color="var(--neutral-500)">
+                  End (Right)
+                </Typography>
+                <Carousel showArrows={false} showDots dotPosition="right">
+                  {carouselSlides()}
+                </Carousel>
+              </div>
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">3. Dot + Left &amp; Right Icon — Top / Bottom / Start / End</Typography>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-16)' }}>
+              <div style={{ maxWidth: 480 }}>
+                <Typography variant="caption" color="var(--neutral-500)">
+                  Top
+                </Typography>
+                <Carousel showArrows showDots dotPosition="top">
+                  {carouselSlides()}
+                </Carousel>
+              </div>
+              <div style={{ maxWidth: 480 }}>
+                <Typography variant="caption" color="var(--neutral-500)">
+                  Bottom
+                </Typography>
+                <Carousel showArrows showDots dotPosition="bottom">
+                  {carouselSlides()}
+                </Carousel>
+              </div>
+              <div style={{ maxWidth: 480 }}>
+                <Typography variant="caption" color="var(--neutral-500)">
+                  Start (Left)
+                </Typography>
+                <Carousel showArrows showDots dotPosition="left">
+                  {carouselSlides()}
+                </Carousel>
+              </div>
+              <div style={{ maxWidth: 480 }}>
+                <Typography variant="caption" color="var(--neutral-500)">
+                  End (Right)
+                </Typography>
+                <Carousel showArrows showDots dotPosition="right">
+                  {carouselSlides()}
+                </Carousel>
+              </div>
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Autoplay</Typography>
+            <div style={{ maxWidth: 480 }}>
+              <Carousel autoplay autoplayInterval={2500}>
+                {carouselSlides()}
+              </Carousel>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section style={sectionStyle}>
+        <Typography variant="h2">Modal</Typography>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-24)' }}>
+          <div style={subCell}>
+            <Typography variant="h3">Basic</Typography>
+            <div style={row}>
+              <Button variant="primary" onClick={() => setModalBasicOpen(true)}>
+                Open Modal
+              </Button>
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Without Close Button</Typography>
+            <div style={row}>
+              <Button variant="primary" onClick={() => setModalNoCloseOpen(true)}>
+                Open Modal
+              </Button>
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Customized Footer</Typography>
+            <div style={row}>
+              <Button variant="primary" onClick={() => setModalCustomFooterOpen(true)}>
+                Open Modal with customized footer
+              </Button>
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">No Footer</Typography>
+            <div style={row}>
+              <Button variant="primary" onClick={() => setModalNoFooterOpen(true)}>
+                Open Modal
+              </Button>
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Mask Variants</Typography>
+            <div style={row}>
+              <Button variant="primary" onClick={() => setModalMaskNoneOpen(true)}>
+                No Mask
+              </Button>
+              <Button variant="primary" onClick={() => setModalMaskBlurOpen(true)}>
+                Blur Mask
+              </Button>
+              <Button variant="primary" onClick={() => setModalMaskDimmedOpen(true)}>
+                Dimmed Mask
+              </Button>
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Top Aligned</Typography>
+            <div style={row}>
+              <Button variant="primary" onClick={() => setModalTopAlignedOpen(true)}>
+                Open Modal
+              </Button>
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Status Types</Typography>
+            <div style={row}>
+              <Button variant="primary" onClick={() => setModalConfirmOpen(true)}>
+                Confirm
+              </Button>
+              <Button variant="primary" onClick={() => setModalInfoOpen(true)}>
+                Info
+              </Button>
+              <Button variant="primary" onClick={() => setModalSuccessOpen(true)}>
+                Success
+              </Button>
+              <Button variant="primary" onClick={() => setModalWarningOpen(true)}>
+                Warning
+              </Button>
+              <Button variant="primary" onClick={() => setModalErrorOpen(true)}>
+                Error
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        <Modal
+          open={modalBasicOpen}
+          onClose={() => setModalBasicOpen(false)}
+          onOk={() => setModalBasicOpen(false)}
+          onCancel={() => setModalBasicOpen(false)}
+          title="Basic Modal"
+        >
+          Some contents...
+          <br />
+          Some contents...
+          <br />
+          Some contents...
+        </Modal>
+
+        <Modal
+          open={modalNoCloseOpen}
+          onClose={() => setModalNoCloseOpen(false)}
+          onOk={() => setModalNoCloseOpen(false)}
+          onCancel={() => setModalNoCloseOpen(false)}
+          title="Without Close Button"
+          closable={false}
+        >
+          Some contents...
+        </Modal>
+
+        <Modal
+          open={modalCustomFooterOpen}
+          onClose={() => setModalCustomFooterOpen(false)}
+          title="Customized Footer"
+          footer={
+            <>
+              <Button variant="secondary" onClick={() => setModalCustomFooterOpen(false)}>
+                Return
+              </Button>
+              <Button variant="primary" onClick={() => setModalCustomFooterOpen(false)}>
+                Submit
+              </Button>
+              <Button variant="primary" onClick={() => setModalCustomFooterOpen(false)}>
+                Search on Google
+              </Button>
+            </>
+          }
+        >
+          Some contents...
+        </Modal>
+
+        <Modal
+          open={modalNoFooterOpen}
+          onClose={() => setModalNoFooterOpen(false)}
+          title="No Footer"
+          footer={null}
+        >
+          Some contents...
+        </Modal>
+
+        <Modal
+          open={modalMaskNoneOpen}
+          onClose={() => setModalMaskNoneOpen(false)}
+          title="No Mask"
+          mask="none"
+        >
+          Some contents...
+        </Modal>
+
+        <Modal
+          open={modalMaskBlurOpen}
+          onClose={() => setModalMaskBlurOpen(false)}
+          title="Blur Mask"
+          mask="blur"
+        >
+          Some contents...
+        </Modal>
+
+        <Modal
+          open={modalMaskDimmedOpen}
+          onClose={() => setModalMaskDimmedOpen(false)}
+          title="Dimmed Mask"
+          mask="dimmed"
+        >
+          Some contents...
+        </Modal>
+
+        <Modal
+          open={modalTopAlignedOpen}
+          onClose={() => setModalTopAlignedOpen(false)}
+          title="Top Aligned"
+          centered={false}
+        >
+          Some contents...
+        </Modal>
+
+        <Modal
+          open={modalConfirmOpen}
+          onClose={() => setModalConfirmOpen(false)}
+          onOk={() => setModalConfirmOpen(false)}
+          onCancel={() => setModalConfirmOpen(false)}
+          type="confirm"
+          title="Confirm"
+        >
+          Bla bla...
+        </Modal>
+
+        <Modal
+          open={modalInfoOpen}
+          onClose={() => setModalInfoOpen(false)}
+          onOk={() => setModalInfoOpen(false)}
+          onCancel={() => setModalInfoOpen(false)}
+          type="info"
+          title="This is a notification message"
+        >
+          This modal will be destroyed automatically after 1 second.
+        </Modal>
+
+        <Modal
+          open={modalSuccessOpen}
+          onClose={() => setModalSuccessOpen(false)}
+          onOk={() => setModalSuccessOpen(false)}
+          onCancel={() => setModalSuccessOpen(false)}
+          type="success"
+          title="This is a success message"
+        >
+          This modal will be destroyed automatically after 1 second.
+        </Modal>
+
+        <Modal
+          open={modalWarningOpen}
+          onClose={() => setModalWarningOpen(false)}
+          onOk={() => setModalWarningOpen(false)}
+          onCancel={() => setModalWarningOpen(false)}
+          type="warning"
+          title="This is a warning message"
+        >
+          This modal will be destroyed automatically after 1 second.
+        </Modal>
+
+        <Modal
+          open={modalErrorOpen}
+          onClose={() => setModalErrorOpen(false)}
+          onOk={() => setModalErrorOpen(false)}
+          onCancel={() => setModalErrorOpen(false)}
+          type="error"
+          title="This is an error message"
+        >
+          This modal will be destroyed automatically after 1 second.
+        </Modal>
+      </section>
+
+      <section style={sectionStyle}>
+        <Typography variant="h2">Statistic</Typography>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-space-24)' }}>
+          <div style={subCell}>
+            <Typography variant="h3">Basic</Typography>
+            <div style={inputGrid}>
+              <div style={inputCell}>
+                <Statistic title="Active Users" value={112893} />
+              </div>
+              <div style={inputCell}>
+                <Statistic title="Account Balance (CNY)" value={112893} precision={2} />
+              </div>
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">With Prefix</Typography>
+            <div style={inputGrid}>
+              <div style={inputCell}>
+                <Statistic title="Feedback" value={1128} prefix={<span>👍</span>} />
+              </div>
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">With Icon Badge</Typography>
+            <div style={inputGrid}>
+              <div style={inputCell}>
+                <Statistic title="Account Balance (CNY)" value={112893} precision={2} icon={StarIcon} iconVariant="secondary" />
+              </div>
+              <div style={inputCell}>
+                <Statistic title="Monthly Active Users" value={93241} suffix="users" icon={UserIcon} trend="up" />
+              </div>
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">String / Custom Value</Typography>
+            <div style={inputGrid}>
+              <div style={inputCell}>
+                <Statistic title="Unmerged" value="93 / 100" />
+              </div>
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Trend</Typography>
+            <div style={inputGrid}>
+              <div style={inputCell}>
+                <Statistic title="Active" value={11.28} suffix="%" trend="up" />
+              </div>
+              <div style={inputCell}>
+                <Statistic title="Idle" value={9.3} suffix="%" trend="down" />
+              </div>
+              <div style={inputCell}>
+                <Statistic title="Monthly Active Users" value={93241} suffix="users" trend="up" />
+              </div>
+              <div style={inputCell}>
+                <Statistic title="Yearly Loss" value={-18.7} suffix="%" trend="down" />
+              </div>
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Loading</Typography>
+            <div style={inputGrid}>
+              <div style={inputCell}>
+                <Statistic title="Active Users" value={112893} loading />
+              </div>
+            </div>
+          </div>
+
+          <div style={subCell}>
+            <Typography variant="h3">Without Animation</Typography>
+            <div style={inputGrid}>
+              <div style={inputCell}>
+                <Statistic title="Active Users" value={112893} animate={false} />
+              </div>
+            </div>
           </div>
         </div>
       </section>

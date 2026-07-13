@@ -1,0 +1,125 @@
+.card {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-space-4);
+  width: 360px;
+  max-width: calc(100vw - 32px);
+  padding: var(--spacing-space-16) var(--spacing-space-8);
+  background-color: var(--background-background);
+  border: 1px solid var(--primary-500);
+  border-radius: var(--radius-border-radius-8);
+  box-shadow: 0px 5px 12.5px rgba(20, 25, 25, 0.05);
+  animation: notificationEnter var(--duration-base) ease;
+}
+
+@keyframes notificationEnter {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.iconBadge {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: var(--spacing-space-8);
+  border-radius: var(--radius-border-radius-8);
+  background-color: var(--primary-50);
+  box-sizing: border-box;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
+.icon path {
+  stroke: var(--primary-600);
+}
+
+.content {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-direction: column;
+  gap: var(--spacing-space-8);
+}
+
+.closeButton {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+
+.closeIcon {
+  width: 16px;
+  height: 16px;
+}
+
+.closeIcon path {
+  stroke: var(--neutral-600);
+}
+
+.card.success {
+  border-color: var(--sucess-500);
+}
+
+.card.success .iconBadge {
+  background-color: var(--sucess-50);
+}
+
+.card.success .icon path {
+  stroke: var(--sucess-600);
+}
+
+.card.info {
+  border-color: var(--secondary-500);
+}
+
+.card.info .iconBadge {
+  background-color: var(--secondary-50);
+}
+
+.card.info .icon path {
+  stroke: var(--secondary-600);
+}
+
+.card.warning {
+  border-color: var(--warning-500);
+}
+
+.card.warning .iconBadge {
+  background-color: var(--warning-50);
+}
+
+.card.warning .icon path {
+  stroke: var(--warning-600);
+}
+
+.card.error {
+  border-color: var(--error-500);
+}
+
+.card.error .iconBadge {
+  background-color: var(--error-50);
+}
+
+.card.error .icon path {
+  stroke: var(--error-600);
+}

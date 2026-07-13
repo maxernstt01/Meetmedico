@@ -1,0 +1,80 @@
+.rate {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-space-4);
+}
+
+.star {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+
+.star:disabled {
+  cursor: not-allowed;
+}
+
+.icon {
+  transition: transform var(--duration-fast) ease;
+}
+
+/* Outline variant: stroke-only star */
+
+.outlineVariant path {
+  fill: none;
+  stroke: var(--neutral-300);
+}
+
+.outlineVariant.rated path {
+  stroke: var(--warning-600);
+}
+
+/* Filled variant: solid star */
+
+.solidVariant path {
+  fill: var(--neutral-300);
+  stroke: var(--neutral-300);
+}
+
+.solidVariant.rated path {
+  fill: var(--warning-600);
+  stroke: var(--warning-600);
+}
+
+.star:disabled .icon {
+  opacity: 0.6;
+}
+
+/* Badge variant: compact read-only summary */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-space-4);
+  padding: var(--spacing-space-4) var(--spacing-space-8);
+  border-radius: var(--radius-border-radius-8);
+  background-color: var(--warning-50);
+}
+
+.badgeIcon {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+}
+
+.badgeIcon path {
+  fill: var(--warning-600);
+  stroke: var(--warning-600);
+}
+
+.badgeValue {
+  font-family: var(--font-family-type-family-primary), system-ui, sans-serif;
+  font-weight: var(--font-weight-type-weight-medium-500);
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-type-lh-caption);
+  color: var(--warning-600);
+}
