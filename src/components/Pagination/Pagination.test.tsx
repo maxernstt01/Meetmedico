@@ -58,4 +58,14 @@ describe('Pagination', () => {
     expect(screen.queryByRole('button', { name: '2' })).not.toBeInTheDocument();
     expect(screen.getByText('...')).toBeInTheDocument();
   });
+
+  it('defaults to left alignment', () => {
+    const { container } = render(<Pagination total={3} />);
+    expect(container.querySelector('[class*="wrapper"]')?.className).toMatch(/left/);
+  });
+
+  it('applies the requested alignment class', () => {
+    const { container } = render(<Pagination total={3} align="center" />);
+    expect(container.querySelector('[class*="wrapper"]')?.className).toMatch(/center/);
+  });
 });

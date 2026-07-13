@@ -55,6 +55,7 @@ export function Pagination({
   prevNext = 'none',
   siblingCount = 1,
   boundaryCount = 1,
+  align = 'left',
   className,
 }: PaginationProps) {
   const isControlled = currentProp !== undefined;
@@ -76,7 +77,7 @@ export function Pagination({
   const isLast = current >= total;
 
   return (
-    <div className={[styles.wrapper, className].filter(Boolean).join(' ')}>
+    <div className={[styles.wrapper, styles[align], className].filter(Boolean).join(' ')}>
       {showTotal && (
         <span className={styles.total}>
           {rangeStart && rangeEnd

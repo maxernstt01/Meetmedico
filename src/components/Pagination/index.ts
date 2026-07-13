@@ -1,2 +1,2 @@
 export { Pagination } from './Pagination';
-export type { PaginationProps, PaginationPrevNext } from './Pagination.types';
+export type { PaginationProps, PaginationPrevNext, PaginationAlign } from './Pagination.types';

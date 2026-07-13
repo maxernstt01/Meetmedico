@@ -5,6 +5,18 @@
   flex-wrap: wrap;
 }
 
+.wrapper.left {
+  justify-content: flex-start;
+}
+
+.wrapper.center {
+  justify-content: center;
+}
+
+.wrapper.right {
+  justify-content: flex-end;
+}
+
 .total {
   flex-shrink: 0;
   font-family: var(--font-family-type-family-primary), system-ui, sans-serif;

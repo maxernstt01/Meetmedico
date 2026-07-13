@@ -1,14 +1,24 @@
-import { forwardRef } from 'react';
+import { forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
 import TickGlyph from '@/assets/icons/Primary Button/Tick02Icon.svg?react';
 import styles from './Checkbox.module.css';
 import type { CheckboxProps } from './Checkbox.types';
 
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
-  ({ checked, defaultChecked, onChange, variant = 'line', disabled, label, id, name, value }, ref) => {
+  (
+    { checked, defaultChecked, indeterminate, onChange, variant = 'line', disabled, label, id, name, value },
+    forwardedRef
+  ) => {
+    const inputRef = useRef<HTMLInputElement>(null);
+    useImperativeHandle(forwardedRef, () => inputRef.current as HTMLInputElement);
+
+    useEffect(() => {
+      if (inputRef.current) inputRef.current.indeterminate = !!indeterminate;
+    }, [indeterminate]);
+
     return (
       <label className={styles.wrapper}>
         <input
-          ref={ref}
+          ref={inputRef}
           id={id}
           type="checkbox"
           name={name}

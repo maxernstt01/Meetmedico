@@ -5,6 +5,7 @@ export type CheckboxVariant = 'line' | 'fill';
 export interface CheckboxProps {
   checked?: boolean;
   defaultChecked?: boolean;
+  indeterminate?: boolean;
   onChange?: (checked: boolean) => void;
   variant?: CheckboxVariant;
   disabled?: boolean;

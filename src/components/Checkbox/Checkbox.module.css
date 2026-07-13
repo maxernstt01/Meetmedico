@@ -70,6 +70,43 @@
   stroke: var(--background-button-tex-and-icon-light);
 }
 
+/* Indeterminate: line variant (outlined) */
+.nativeInput:indeterminate ~ .box.line {
+  border-color: var(--primary-600);
+}
+
+.nativeInput:indeterminate ~ .box.line .icon {
+  display: none;
+}
+
+.nativeInput:indeterminate ~ .box.line::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 2px;
+  border-radius: 1px;
+  background-color: var(--primary-600);
+}
+
+/* Indeterminate: fill variant (solid) */
+.nativeInput:indeterminate ~ .box.fill {
+  border-color: transparent;
+  background-color: var(--primary-600);
+}
+
+.nativeInput:indeterminate ~ .box.fill .icon {
+  display: none;
+}
+
+.nativeInput:indeterminate ~ .box.fill::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 2px;
+  border-radius: 1px;
+  background-color: var(--background-button-tex-and-icon-light);
+}
+
 /* Disabled, unchecked */
 .nativeInput:disabled ~ .box {
   border-color: var(--neutral-100);

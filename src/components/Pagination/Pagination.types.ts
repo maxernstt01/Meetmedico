@@ -1,4 +1,5 @@
 export type PaginationPrevNext = 'none' | 'icon' | 'button';
+export type PaginationAlign = 'left' | 'center' | 'right';
 
 export interface PaginationProps {
   total: number;
@@ -11,5 +12,6 @@ export interface PaginationProps {
   prevNext?: PaginationPrevNext;
   siblingCount?: number;
   boundaryCount?: number;
+  align?: PaginationAlign;
   className?: string;
 }

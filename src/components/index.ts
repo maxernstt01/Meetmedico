@@ -38,3 +38,7 @@ export * from './Carousel';
 export * from './Modal';
 export * from './Statistic';
 export * from './Notification';
+export * from './Timeline';
+export * from './Table';
+export * from './EmptyState';
+export * from './Tour';

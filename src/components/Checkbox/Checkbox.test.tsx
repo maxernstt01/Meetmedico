@@ -35,4 +35,17 @@ describe('Checkbox', () => {
     expect(onChange).not.toHaveBeenCalled();
     expect(screen.getByRole('checkbox', { name: 'Accept terms' })).toBeDisabled();
   });
+
+  it('sets the native indeterminate property when indeterminate is true', () => {
+    render(<Checkbox label="Select all" indeterminate />);
+    const checkbox = screen.getByRole('checkbox', { name: 'Select all' }) as HTMLInputElement;
+    expect(checkbox.indeterminate).toBe(true);
+  });
+
+  it('clears the native indeterminate property when indeterminate is false', () => {
+    const { rerender } = render(<Checkbox label="Select all" indeterminate />);
+    rerender(<Checkbox label="Select all" indeterminate={false} />);
+    const checkbox = screen.getByRole('checkbox', { name: 'Select all' }) as HTMLInputElement;
+    expect(checkbox.indeterminate).toBe(false);
+  });
 });
